@@ -265,86 +265,43 @@
       border-radius: 0 10px 10px 0;
       padding: 15px;
       display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
+      flex-wrap: wrap;
       gap: 15px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--accent-color) var(--secondary-color);
-    }
-    
-    .tier-players::-webkit-scrollbar {
-      height: 8px;
-    }
-    
-    .tier-players::-webkit-scrollbar-track {
-      background: var(--secondary-color);
-      border-radius: 10px;
-    }
-    
-    .tier-players::-webkit-scrollbar-thumb {
-      background-color: var(--accent-color);
-      border-radius: 10px;
     }
     
     .player-card {
-      flex: 0 0 220px;
       background-color: rgba(0,0,0,0.2);
       border-radius: 8px;
-      padding: 15px;
+      padding: 12px 16px;
       display: flex;
-      flex-direction: column;
       position: relative;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      overflow: hidden;
       text-decoration: none;
       color: white;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      align-items: center;
     }
     
     .player-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.2);
       z-index: 1;
-    }
-    
-    .avatar {
-      width: 70px;
-      height: 70px;
-      border-radius: 8px;
-      background-color: #444;
-      margin: 0 auto 15px;
-      background-image: url('/api/placeholder/70/70');
-      background-size: cover;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .player-info {
-      text-align: center;
+      background-color: rgba(0,0,0,0.4);
     }
     
     .player-name {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: bold;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    
-    .player-rank {
-      font-size: 14px;
-      color: #aaa;
-      margin-top: 3px;
+      margin-right: 8px;
     }
     
     .region-badge {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      padding: 3px 10px;
+      padding: 3px 8px;
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: bold;
+      margin-left: auto;
     }
     
     .region-badge.na {
@@ -408,11 +365,8 @@
       
       .tier-players {
         border-radius: 0 0 10px 10px;
-        overflow-x: auto;
-      }
-      
-      .player-card {
-        flex: 0 0 160px;
+        flex-direction: column;
+        gap: 10px;
       }
     }
   </style>
@@ -475,18 +429,11 @@
         <div class="tier-label s">S</div>
         <div class="tier-players">
           <a href="https://discord.com/users/1355245770453946399" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">Morad</div>
-              <div class="player-rank">#1</div>
-            </div>
+            <div class="player-name">Morad</div>
             <div class="region-badge na">NA</div>
           </a>
           <a href="https://discord.com/users/1257267971387035649" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">ItzUnfipabolYT</div>
-            </div>
+            <div class="player-name">ItzUnfipabolYT</div>
             <div class="region-badge as">AS</div>
           </a>
         </div>
@@ -497,45 +444,27 @@
         <div class="tier-label a">A</div>
         <div class="tier-players">
           <a href="https://discord.com/users/510847369454026753" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">qou2</div>
-            </div>
+            <div class="player-name">qou2</div>
             <div class="region-badge eu">EU</div>
           </a>
           <a href="https://discord.com/users/1341247619628011561" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">xyzzzii</div>
-            </div>
+            <div class="player-name">xyzzzii</div>
             <div class="region-badge na">NA</div>
           </a>
           <a href="https://discord.com/users/800738861290487838" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">zH1by</div>
-            </div>
+            <div class="player-name">zH1by</div>
             <div class="region-badge na">NA</div>
           </a>
           <a href="https://discord.com/users/405485130111778817" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">WerLifes</div>
-            </div>
+            <div class="player-name">WerLifes</div>
             <div class="region-badge na">NA</div>
           </a>
           <a href="https://discord.com/users/1364897561499930664" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">Dqrryn</div>
-            </div>
+            <div class="player-name">Dqrryn</div>
             <div class="region-badge na">NA</div>
           </a>
           <a href="https://discord.com/users/1306788722125045842" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">cybxrzyt</div>
-            </div>
+            <div class="player-name">cybxrzyt</div>
             <div class="region-badge na">NA</div>
           </a>
         </div>
@@ -546,67 +475,39 @@
         <div class="tier-label b">B</div>
         <div class="tier-players">
           <a href="https://discord.com/users/1139544219862695967" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">EletricHayden</div>
-            </div>
+            <div class="player-name">EletricHayden</div>
             <div class="region-badge na">NA</div>
           </a>
           <a href="https://discord.com/users/758842436214194206" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">stqr w</div>
-            </div>
+            <div class="player-name">stqr w</div>
             <div class="region-badge na">NA</div>
           </a>
           <a href="https://discord.com/users/1196831517276635260" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">FutureMX</div>
-            </div>
+            <div class="player-name">FutureMX</div>
             <div class="region-badge na">NA</div>
           </a>
           <div class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">CupHeadies</div>
-              <div class="player-rank">No ID</div>
-            </div>
+            <div class="player-name">CupHeadies</div>
             <div class="region-badge na">NA</div>
           </div>
           <a href="https://discord.com/users/1356637033291976734" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">SZ Zarqm</div>
-            </div>
+            <div class="player-name">SZ Zarqm</div>
             <div class="region-badge na">NA</div>
           </a>
           <a href="https://discord.com/users/1228837831796064266" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">HESU69</div>
-            </div>
+            <div class="player-name">HESU69</div>
             <div class="region-badge na">NA</div>
           </a>
           <a href="https://discord.com/users/1112782330642305087" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">SimpleGreen7673</div>
-            </div>
+            <div class="player-name">SimpleGreen7673</div>
             <div class="region-badge na">NA</div>
           </a>
           <a href="https://discord.com/users/1288947330417954879" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">voodl9</div>
-            </div>
+            <div class="player-name">voodl9</div>
             <div class="region-badge na">NA</div>
           </a>
           <a href="https://discord.com/users/1089232779910320288" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">craigmcyt</div>
-            </div>
+            <div class="player-name">craigmcyt</div>
             <div class="region-badge na">NA</div>
           </a>
         </div>
@@ -617,39 +518,23 @@
         <div class="tier-label c">C</div>
         <div class="tier-players">
           <a href="https://discord.com/users/1322810863929004064" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">BestRapier07358</div>
-            </div>
+            <div class="player-name">BestRapier07358</div>
             <div class="region-badge na">NA</div>
           </a>
           <a href="https://discord.com/users/1227056207336968204" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">mqrzyt</div>
-            </div>
+            <div class="player-name">mqrzyt</div>
             <div class="region-badge na">NA</div>
           </a>
           <a href="https://discord.com/users/1315163549252849677" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">Sweat</div>
-            </div>
+            <div class="player-name">Sweat</div>
             <div class="region-badge na">NA</div>
           </a>
           <div class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">2much.rackzz</div>
-              <div class="player-rank">No ID</div>
-            </div>
+            <div class="player-name">2much.rackzz</div>
             <div class="region-badge na">NA</div>
           </div>
           <a href="https://discord.com/users/1084759872245092423" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">Frosttsammyy</div>
-            </div>
+            <div class="player-name">Frosttsammyy</div>
             <div class="region-badge na">NA</div>
           </a>
         </div>
@@ -660,17 +545,11 @@
         <div class="tier-label d">D</div>
         <div class="tier-players">
           <a href="https://discord.com/users/1334810572209913910" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">VoidYT25</div>
-            </div>
+            <div class="player-name">VoidYT25</div>
             <div class="region-badge na">NA</div>
           </a>
           <a href="https://discord.com/users/1308843046586023959" class="player-card">
-            <div class="avatar"></div>
-            <div class="player-info">
-              <div class="player-name">NovaVibeYT</div>
-            </div>
+            <div class="player-name">NovaVibeYT</div>
             <div class="region-badge na">NA</div>
           </a>
         </div>
@@ -774,6 +653,6 @@
         });
       });
     });
- <script src="xbox-profiles.js"></script>
+  </script>
 </body>
 </html>
