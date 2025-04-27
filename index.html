@@ -23,6 +23,51 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23333' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+    
+    nav {
+      background-color: var(--secondary-color);
+      padding: 10px 25px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 16px;
+      transition: all 0.2s;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
+    
+    .user-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .login-btn {
+      background-color: transparent;
+      border: 1px solid var(--accent-color);
+      color: var(--accent-color);
+      padding: 6px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .login-btn:hover {
+      background-color: var(--accent-color);
+      color: white;
     }
     
     header {
@@ -55,6 +100,37 @@
       text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
     
+    .site-description {
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: center;
+      line-height: 1.6;
+      color: #ccc;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    
+    .primary-btn {
+      background: linear-gradient(45deg, #6441a5, #2a0845);
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+    }
+    
+    .primary-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
     .discord-button {
       background-color: var(--discord-color);
       padding: 10px 18px;
@@ -82,9 +158,54 @@
     .container {
       flex: 1;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
       padding: 40px 20px;
+    }
+    
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .stat-box {
+      background-color: var(--secondary-color);
+      padding: 20px;
+      border-radius: 10px;
+      min-width: 120px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .stat-number {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--accent-color);
+      margin-bottom: 5px;
+    }
+    
+    .stat-label {
+      font-size: 14px;
+      color: #aaa;
+    }
+    
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 25px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: var(--accent-color);
+      margin: 10px auto;
     }
     
     .gamemodes {
@@ -97,13 +218,13 @@
     
     .gamemode-btn {
       background: var(--secondary-color);
-      padding: 30px 40px;
+      padding: 30px 20px;
       border-radius: 12px;
       text-decoration: none;
       color: white;
       font-size: 22px;
       transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      min-width: 180px;
+      width: 180px;
       text-align: center;
       box-shadow: 0 6px 12px rgba(0,0,0,0.15);
       display: flex;
@@ -135,15 +256,131 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
     
+    .gamemode-tooltip {
+      position: absolute;
+      bottom: -80px;
+      left: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.8);
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: all 0.3s;
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .gamemode-btn:hover .gamemode-tooltip {
+      bottom: -60px;
+      opacity: 1;
+    }
+    
+    .news-section {
+      margin-top: 50px;
+      width: 100%;
+      max-width: 800px;
+    }
+    
+    .news-card {
+      background: var(--secondary-color);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .news-date {
+      color: #aaa;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    
+    .news-title {
+      margin: 0 0 10px;
+      color: var(--accent-color);
+    }
+    
     footer {
       text-align: center;
       padding: 20px;
       background-color: var(--secondary-color);
       margin-top: auto;
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .footer-links a {
+      color: #aaa;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: var(--accent-color);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      color: #aaa;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+    
+    .social-links a:hover {
+      color: var(--accent-color);
+    }
+    
+    .copyright {
+      width: 100%;
+      margin-top: 20px;
+      color: #777;
       font-size: 14px;
     }
     
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    
     @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: var(--secondary-color);
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        z-index: 100;
+      }
+      
+      .nav-links.active {
+        display: flex;
+      }
+      
       header {
         flex-direction: column;
         gap: 15px;
@@ -154,23 +391,37 @@
         margin-top: 10px;
       }
       
+      .stats-row {
+        gap: 15px;
+      }
+      
       .gamemodes {
         gap: 15px;
       }
       
       .gamemode-btn {
-        padding: 20px 30px;
-        min-width: 130px;
+        padding: 20px 10px;
+        width: 120px;
         font-size: 18px;
       }
       
       .gamemode-btn i {
         font-size: 24px;
       }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
+
+  
+    <div class="user-actions">
+    </div>
+  </nav>
 
   <header>
     <div class="logo-container">
@@ -185,37 +436,94 @@
   </header>
 
   <div class="container">
+    <p class="site-description">
+      Welcome to Bedrock Tier Testing, The number one testing platform for Bedrock players. We test all platforms in 6 different gamemodes.
+    </p>
+    
+    <div class="cta-buttons">
+      <a href="how-it-works.html" class="primary-btn">Get Started</a>
+    </div>
+    
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-number">55</div>
+        <div class="stat-label">Active Members</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">58</div>
+        <div class="stat-label">Tests Completed</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">6</div>
+        <div class="stat-label">Game Modes</div>
+      </div>
+    </div>
+    
+    <h2 class="section-title">Game Modes</h2>
     <div class="gamemodes">
       <a class="gamemode-btn" href="skywars.html">
-        <i class="fas fa-cloud"></i>
+        <i class="fas fa-dragon"></i>
         Skywars
+        <span class="gamemode-tooltip">Battle opponents on floating islands with custom kits</span>
       </a>
       <a class="gamemode-btn" href="midfight.html">
-        <i class="fas fa-fist-raised"></i>
+        <i class="fas fa-khanda"></i>
         Midfight
+        <span class="gamemode-tooltip">Fast-paced combat in an enclosed arena</span>
       </a>
       <a class="gamemode-btn" href="bridge.html">
         <i class="fas fa-archway"></i>
         Bridge
+        <span class="gamemode-tooltip">Score points by crossing to your opponent's side</span>
       </a>
       <a class="gamemode-btn" href="sumo.html">
-        <i class="fas fa-circle"></i>
+        <i class="fas fa-ring"></i>
         Sumo
+        <span class="gamemode-tooltip">Knock your opponent off the platform to win</span>
       </a>
       <a class="gamemode-btn" href="nodebuff.html">
-        <i class="fas fa-shield-alt"></i>
+        <i class="fas fa-flask"></i>
         NoDebuff
+        <span class="gamemode-tooltip">PvP with health potions and no status effects</span>
       </a>
       <a class="gamemode-btn" href="builduhc.html">
         <i class="fas fa-hammer"></i>
         BuildUHC
+        <span class="gamemode-tooltip">Strategy-based PvP with building mechanics</span>
       </a>
+    </div>
+    
+    <div class="news-section">
+      <h2 class="section-title">Latest News</h2>
+      <div class="news-card">
+        <div class="news-date">April 27, 2025</div>
+        <h3 class="news-title">Website Release</h3>
+        <p>Website has officially released!!.</p>
+      </div>
+      
     </div>
   </div>
 
   <footer>
-    <p>© 2025 Bedrock Tier Testing | Last Updated: April 2025</p>
+    
+    <div class="copyright">
+      © 2025 Bedrock Tier Testing | Last Updated: April 2025 | Made with love by qou2
+    </div>
   </footer>
-<script src="xbox-profiles.js"></script>
+
+  <script>
+    // Toggle mobile menu
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('nav')) {
+        document.querySelector('.nav-links').classList.remove('active');
+      }
+    });
+  </script>
+  <script src="xbox-profiles.js"></script>
 </body>
 </html>
