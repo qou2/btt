@@ -13,7 +13,6 @@
       --accent-color: #6441a5;
       --discord-color: #5865F2;
       
-      /* Tier Colors */
       --s-tier: #11806a;
       --a-tier: #1f8b4c;
       --b-tier: #206694;
@@ -21,10 +20,11 @@
       --d-tier: #ad1457;
       --e-tier: #992d22;
       
-      /* Region Colors */
       --na-color: #3498db;
       --eu-color: #2ecc71;
       --as-color: #e74c3c;
+      
+      --badge-color: #fffa9a;
     }
     
     body {
@@ -210,29 +210,28 @@
       overflow-x: auto;
     }
     
-    /* Horizontal tier rows */
     .tier-list {
       display: flex;
-      flex-direction: column;
       gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 20px;
     }
     
-    .tier-row {
+    .tier-column {
+      min-width: 240px;
       display: flex;
-      align-items: stretch;
-      width: 100%;
+      flex-direction: column;
     }
     
     .tier-label {
-      min-width: 70px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 34px;
       font-weight: bold;
-      border-radius: 10px 0 0 10px;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-      z-index: 1;
+      border-radius: 10px 10px 0 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     
     .tier-label.s {
@@ -262,11 +261,12 @@
     .tier-players {
       flex: 1;
       background-color: rgba(34, 34, 34, 0.8);
-      border-radius: 0 10px 10px 0;
+      border-radius: 0 0 10px 10px;
       padding: 15px;
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 15px;
+      height: 100%;
     }
     
     .player-card {
@@ -280,6 +280,29 @@
       color: white;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       align-items: center;
+      overflow: hidden; /* Important for the sliding effect */
+    }
+    
+    .player-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      z-index: 1;
+    }
+    
+    .player-card.na::before {
+      background-color: var(--na-color);
+    }
+    
+    .player-card.eu::before {
+      background-color: var(--eu-color);
+    }
+    
+    .player-card.as::before {
+      background-color: var(--as-color);
     }
     
     .player-card:hover {
@@ -293,15 +316,39 @@
       font-size: 16px;
       font-weight: bold;
       white-space: nowrap;
-      margin-right: 8px;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+    }
+    
+    .number-one-badge {
+      background-color: var(--badge-color);
+      color: #000;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-left: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
     
     .region-badge {
+      position: absolute;
       padding: 3px 8px;
       border-radius: 20px;
       font-size: 11px;
       font-weight: bold;
-      margin-left: auto;
+      right: -100px; /* Start off-screen */
+      transition: right 0.3s ease;
+      z-index: 2;
+    }
+    
+    .player-card:hover .region-badge {
+      right: 16px; /* Slide in */
     }
     
     .region-badge.na {
@@ -352,21 +399,12 @@
         justify-content: center;
       }
       
-      .tier-row {
+      .tier-list {
         flex-direction: column;
       }
       
-      .tier-label {
+      .tier-column {
         width: 100%;
-        min-height: 50px;
-        padding: 10px 0;
-        border-radius: 10px 10px 0 0;
-      }
-      
-      .tier-players {
-        border-radius: 0 0 10px 10px;
-        flex-direction: column;
-        gap: 10px;
       }
     }
   </style>
@@ -425,14 +463,14 @@
   <div class="container">
     <div class="tier-list">
       <!-- S Tier -->
-      <div class="tier-row">
+      <div class="tier-column">
         <div class="tier-label s">S</div>
         <div class="tier-players">
-          <a href="https://discord.com/users/1355245770453946399" class="player-card">
-            <div class="player-name">Morad</div>
+          <a href="https://discord.com/users/1355245770453946399" class="player-card na">
+            <div class="player-name">Morad<span class="number-one-badge">#1</span></div>
             <div class="region-badge na">NA</div>
           </a>
-          <a href="https://discord.com/users/1257267971387035649" class="player-card">
+          <a href="https://discord.com/users/1257267971387035649" class="player-card as">
             <div class="player-name">ItzUnfipabolYT</div>
             <div class="region-badge as">AS</div>
           </a>
@@ -440,30 +478,30 @@
       </div>
       
       <!-- A Tier -->
-      <div class="tier-row">
+      <div class="tier-column">
         <div class="tier-label a">A</div>
         <div class="tier-players">
-          <a href="https://discord.com/users/510847369454026753" class="player-card">
+          <a href="https://discord.com/users/510847369454026753" class="player-card as">
             <div class="player-name">qou2</div>
-            <div class="region-badge eu">EU</div>
+            <div class="region-badge as">AS</div>
           </a>
-          <a href="https://discord.com/users/1341247619628011561" class="player-card">
+          <a href="https://discord.com/users/1341247619628011561" class="player-card na">
             <div class="player-name">xyzzzii</div>
             <div class="region-badge na">NA</div>
           </a>
-          <a href="https://discord.com/users/800738861290487838" class="player-card">
+          <a href="https://discord.com/users/800738861290487838" class="player-card na">
             <div class="player-name">zH1by</div>
             <div class="region-badge na">NA</div>
           </a>
-          <a href="https://discord.com/users/405485130111778817" class="player-card">
+          <a href="https://discord.com/users/405485130111778817" class="player-card na">
             <div class="player-name">WerLifes</div>
             <div class="region-badge na">NA</div>
           </a>
-          <a href="https://discord.com/users/1364897561499930664" class="player-card">
+          <a href="https://discord.com/users/1364897561499930664" class="player-card na">
             <div class="player-name">Dqrryn</div>
             <div class="region-badge na">NA</div>
           </a>
-          <a href="https://discord.com/users/1306788722125045842" class="player-card">
+          <a href="https://discord.com/users/1306788722125045842" class="player-card na">
             <div class="player-name">cybxrzyt</div>
             <div class="region-badge na">NA</div>
           </a>
@@ -471,42 +509,38 @@
       </div>
       
       <!-- B Tier -->
-      <div class="tier-row">
+      <div class="tier-column">
         <div class="tier-label b">B</div>
         <div class="tier-players">
-          <a href="https://discord.com/users/1139544219862695967" class="player-card">
+          <a href="https://discord.com/users/1139544219862695967" class="player-card eu">
             <div class="player-name">EletricHayden</div>
-            <div class="region-badge na">NA</div>
+            <div class="region-badge eu">EU</div>
           </a>
-          <a href="https://discord.com/users/758842436214194206" class="player-card">
-            <div class="player-name">stqr w</div>
-            <div class="region-badge na">NA</div>
-          </a>
-          <a href="https://discord.com/users/1196831517276635260" class="player-card">
+          <a href="https://discord.com/users/1196831517276635260" class="player-card as">
             <div class="player-name">FutureMX</div>
-            <div class="region-badge na">NA</div>
+            <div class="region-badge as">AS</div>
           </a>
-          <div class="player-card">
+          <div class="player-card na">
             <div class="player-name">CupHeadies</div>
             <div class="region-badge na">NA</div>
           </div>
-          <a href="https://discord.com/users/1356637033291976734" class="player-card">
+          <a href="https://discord.com/users/1356637033291976734" class="player-card eu">
             <div class="player-name">SZ Zarqm</div>
-            <div class="region-badge na">NA</div>
+            <div class="region-badge eu">EU</div>
           </a>
-          <a href="https://discord.com/users/1228837831796064266" class="player-card">
+          <a href="https://discord.com/users/1228837831796064266" class="player-card eu">
             <div class="player-name">HESU69</div>
-            <div class="region-badge na">NA</div>
+            <div class="region-badge eu">EU</div>
           </a>
-          <a href="https://discord.com/users/1112782330642305087" class="player-card">
+          <a href="https://discord.com/users/1112782330642305087" class="player-card na">
             <div class="player-name">SimpleGreen7673</div>
             <div class="region-badge na">NA</div>
           </a>
-          <a href="https://discord.com/users/1288947330417954879" class="player-card">
+          <a href="https://discord.com/users/1288947330417954879" class="player-card na">
             <div class="player-name">voodl9</div>
             <div class="region-badge na">NA</div>
           </a>
-          <a href="https://discord.com/users/1089232779910320288" class="player-card">
+          <a href="https://discord.com/users/1089232779910320288" class="player-card na">
             <div class="player-name">craigmcyt</div>
             <div class="region-badge na">NA</div>
           </a>
@@ -514,49 +548,49 @@
       </div>
       
       <!-- C Tier -->
-      <div class="tier-row">
+      <div class="tier-column">
         <div class="tier-label c">C</div>
         <div class="tier-players">
-          <a href="https://discord.com/users/1322810863929004064" class="player-card">
+          <a href="https://discord.com/users/1322810863929004064" class="player-card as">
             <div class="player-name">BestRapier07358</div>
-            <div class="region-badge na">NA</div>
+            <div class="region-badge as">AS</div>
           </a>
-          <a href="https://discord.com/users/1227056207336968204" class="player-card">
+          <a href="https://discord.com/users/1227056207336968204" class="player-card na">
             <div class="player-name">mqrzyt</div>
             <div class="region-badge na">NA</div>
           </a>
-          <a href="https://discord.com/users/1315163549252849677" class="player-card">
+          <a href="https://discord.com/users/1315163549252849677" class="player-card eu">
             <div class="player-name">Sweat</div>
-            <div class="region-badge na">NA</div>
+            <div class="region-badge eu">EU</div>
           </a>
-          <div class="player-card">
+          <div class="player-card na">
             <div class="player-name">2much.rackzz</div>
             <div class="region-badge na">NA</div>
           </div>
-          <a href="https://discord.com/users/1084759872245092423" class="player-card">
+          <a href="https://discord.com/users/1084759872245092423" class="player-card as">
             <div class="player-name">Frosttsammyy</div>
-            <div class="region-badge na">NA</div>
+            <div class="region-badge as">AS</div>
           </a>
         </div>
       </div>
       
       <!-- D Tier -->
-      <div class="tier-row">
+      <div class="tier-column">
         <div class="tier-label d">D</div>
         <div class="tier-players">
-          <a href="https://discord.com/users/1334810572209913910" class="player-card">
+          <a href="https://discord.com/users/1334810572209913910" class="player-card as">
             <div class="player-name">VoidYT25</div>
-            <div class="region-badge na">NA</div>
+            <div class="region-badge as">AS</div>
           </a>
-          <a href="https://discord.com/users/1308843046586023959" class="player-card">
+          <a href="https://discord.com/users/1308843046586023959" class="player-card as">
             <div class="player-name">NovaVibeYT</div>
-            <div class="region-badge na">NA</div>
+            <div class="region-badge as">AS</div>
           </a>
         </div>
       </div>
       
       <!-- E Tier -->
-      <div class="tier-row">
+      <div class="tier-column">
         <div class="tier-label e">E</div>
         <div class="tier-players">
           <div class="empty-tier-message">No players in this tier yet</div>
@@ -566,15 +600,14 @@
   </div>
 
   <footer>
-    <p>© 2025 Bedrock Tier Testing | Last Updated: April 2025</p>
+    <p>© 2025 Bedrock Tier Testing | Last Updated: April 2025 | Made with love by qou2</p>
   </footer>
 
   <script>
-    // Simple search functionality
     document.getElementById('playerSearch').addEventListener('input', function() {
       const searchTerm = this.value.toLowerCase();
       const players = document.querySelectorAll('.player-card');
-      const tierRows = document.querySelectorAll('.tier-row');
+      const tierColumns = document.querySelectorAll('.tier-column');
       
       players.forEach(player => {
         const playerName = player.querySelector('.player-name').textContent.toLowerCase();
@@ -585,45 +618,38 @@
         }
       });
       
-      // Check if any tier is empty after filtering
-      tierRows.forEach(row => {
-        const visiblePlayers = row.querySelectorAll('.player-card[style="display: flex;"]');
-        const emptyMessage = row.querySelector('.empty-tier-message');
+      tierColumns.forEach(column => {
+        const visiblePlayers = column.querySelectorAll('.player-card[style="display: flex;"]');
+        const emptyMessage = column.querySelector('.empty-tier-message');
+        const tierPlayers = column.querySelector('.tier-players');
         
-        // If there's no empty message yet and no visible players, add one
         if (visiblePlayers.length === 0 && !emptyMessage) {
-          const tierPlayers = row.querySelector('.tier-players');
           const newEmptyMessage = document.createElement('div');
           newEmptyMessage.className = 'empty-tier-message';
           newEmptyMessage.textContent = 'No players match your search';
           newEmptyMessage.style.display = 'block';
           tierPlayers.appendChild(newEmptyMessage);
         } 
-        // If there are visible players but an empty message exists, remove it
         else if (visiblePlayers.length > 0 && emptyMessage) {
           emptyMessage.style.display = 'none';
         }
       });
     });
     
-    // Region filter functionality
     const filterButtons = document.querySelectorAll('.filter-button');
     filterButtons.forEach(button => {
       button.addEventListener('click', function() {
         const filter = this.getAttribute('data-filter');
         
-        // Update active button
         filterButtons.forEach(btn => btn.classList.remove('active'));
         this.classList.add('active');
         
-        // Filter players
         const players = document.querySelectorAll('.player-card');
         players.forEach(player => {
           if (filter === 'all') {
             player.style.display = 'flex';
           } else {
-            const regionBadge = player.querySelector('.region-badge');
-            if (regionBadge && regionBadge.classList.contains(filter)) {
+            if (player.classList.contains(filter)) {
               player.style.display = 'flex';
             } else {
               player.style.display = 'none';
@@ -631,12 +657,11 @@
           }
         });
         
-        // Handle empty tiers after filtering
-        const tierRows = document.querySelectorAll('.tier-row');
-        tierRows.forEach(row => {
-          const visiblePlayers = Array.from(row.querySelectorAll('.player-card')).filter(p => p.style.display !== 'none');
-          const tierPlayers = row.querySelector('.tier-players');
-          const existingEmptyMessage = row.querySelector('.empty-tier-message');
+        const tierColumns = document.querySelectorAll('.tier-column');
+        tierColumns.forEach(column => {
+          const visiblePlayers = Array.from(column.querySelectorAll('.player-card')).filter(p => p.style.display !== 'none');
+          const tierPlayers = column.querySelector('.tier-players');
+          const existingEmptyMessage = column.querySelector('.empty-tier-message');
           
           if (visiblePlayers.length === 0) {
             if (!existingEmptyMessage) {
