@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const playerCards = document.querySelectorAll('.player-card');
   if (playerCards.length === 0) return;
 
+  // Default Xbox profile picture to use when API fails
+  const defaultXboxIcon = "https://images-eds-ssl.xboxlive.com/image?url=wHwbXKif8cus8csoZ03RW3apWESZjav65Yncai8aRmWL5wD_dXiCeIhr2I61i4BQ4QVFYeQeIi7i6ZtOjjr7I_D6C72vv5wKR24796_oInYM6igje3Tce98UBdEdlZHqsA27eBbHwmkC_IcAG.R3qPwRmIfO7A5ftfaEdpE_SCESvHLbMc_Bti50JN5KzyIO&format=png";
+
   // Process each player card
   playerCards.forEach(card => {
     const playerNameElement = card.querySelector('.player-name');
@@ -30,43 +33,34 @@ document.addEventListener('DOMContentLoaded', function() {
         return response.json();
       })
       .then(data => {
-        // Update the avatar with the player's skin URL
-        if (data.skin) {
-          // Use the skin URL directly
-          avatarElement.style.backgroundImage = `url(${data.skin})`;
-          
-          // Add a class to indicate the avatar was successfully loaded
-          avatarElement.classList.add('loaded');
-          
-          // Store additional data as attributes if needed later
-          if (data.xuid) {
-            avatarElement.setAttribute('data-xuid', data.xuid);
-          }
-          if (data.gamescore) {
-            // Update player rank element if it exists
-            const rankElement = avatarElement.parentElement.querySelector('.player-rank');
-            if (rankElement && !rankElement.textContent.includes('#')) {
-              rankElement.textContent = `Score: ${data.gamescore}`;
-            }
-          }
-        } else if (data.icon) {
-          // Fallback to Xbox profile icon if skin isn't available
-          avatarElement.style.backgroundImage = `url(${data.icon})`;
-          avatarElement.classList.add('loaded');
+        // Use the icon URL directly from the API response
+        if (data.icon) {
+          updateAvatar(avatarElement, data.icon);
+        } else {
+          // Use default icon if the API response doesn't include an icon
+          updateAvatar(avatarElement, defaultXboxIcon);
         }
       })
       .catch(error => {
         console.error(`Error fetching profile for ${gamertag}:`, error);
-        // Keep default placeholder avatar for failed requests
+        // Use default icon for failed requests
+        updateAvatar(avatarElement, defaultXboxIcon);
       });
+  }
+
+  // Function to update avatar with proper styling
+  function updateAvatar(avatarElement, iconUrl) {
+    avatarElement.style.backgroundImage = `url(${iconUrl})`;
+    avatarElement.classList.add('loaded');
   }
 
   // Add CSS for better avatar display
   const styleElement = document.createElement('style');
   styleElement.textContent = `
     .avatar {
-      background-position: -16px -8px;
-      background-size: 128px 128px;
+      background-position: center;
+      background-size: cover;
+      border: 2px solid #333;
     }
     .avatar.loaded {
       background-color: transparent;
