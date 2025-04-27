@@ -4,63 +4,218 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bedrock Tier Testing</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
+    :root {
+      --primary-color: #111;
+      --secondary-color: #222;
+      --accent-color: #6441a5;
+      --text-color: #fff;
+      --hover-color: #333;
+      --discord-color: #5865F2;
+    }
+    
     body {
       margin: 0;
-      background-color: #111;
-      color: #fff;
-      font-family: 'Arial', sans-serif;
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+    
     header {
-      padding: 20px;
+      background-color: var(--secondary-color);
+      padding: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo {
+      margin-right: 15px;
+      font-size: 32px;
+      color: var(--accent-color);
+    }
+    
+    .site-title {
       font-size: 28px;
       font-weight: bold;
+      background: linear-gradient(45deg, #6441a5, #2a0845);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
+    
+    .discord-button {
+      background-color: var(--discord-color);
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .discord-button i {
+      margin-right: 8px;
+      font-size: 20px;
+    }
+    
+    .discord-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      background-color: #4752C4;
+    }
+    
     .container {
+      flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: calc(100vh - 80px); /* Full screen minus header */
-      padding: 20px;
+      padding: 40px 20px;
     }
+    
     .gamemodes {
       display: flex;
-      gap: 20px;
+      gap: 25px;
       flex-wrap: wrap;
       justify-content: center;
       max-width: 1200px;
     }
+    
     .gamemode-btn {
-      background: #222;
-      padding: 40px 60px;
+      background: var(--secondary-color);
+      padding: 30px 40px;
       border-radius: 12px;
       text-decoration: none;
       color: white;
-      font-size: 24px;
-      transition: background 0.3s, transform 0.3s;
-      min-width: 150px;
+      font-size: 22px;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      min-width: 180px;
       text-align: center;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
     }
+    
+    .gamemode-btn:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #6441a5, #2a0845);
+    }
+    
+    .gamemode-btn i {
+      font-size: 32px;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+    }
+    
     .gamemode-btn:hover {
-      background: #333;
-      transform: scale(1.05);
+      background: var(--hover-color);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--secondary-color);
+      margin-top: auto;
+      font-size: 14px;
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+      
+      .discord-button {
+        margin-top: 10px;
+      }
+      
+      .gamemodes {
+        gap: 15px;
+      }
+      
+      .gamemode-btn {
+        padding: 20px 30px;
+        min-width: 130px;
+        font-size: 18px;
+      }
+      
+      .gamemode-btn i {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>Bedrock Tier Testing</header>
+  <header>
+    <div class="logo-container">
+      <div class="logo">
+        <i class="fas fa-cubes"></i>
+      </div>
+      <div class="site-title">Bedrock Tier Testing</div>
+    </div>
+    <a class="discord-button" href="https://discord.gg/yuMzU7485w" target="_blank">
+      <i class="fab fa-discord"></i> Join Discord
+    </a>
+  </header>
 
   <div class="container">
     <div class="gamemodes">
-      <a class="gamemode-btn" href="skywars.html">Skywars</a>
-      <a class="gamemode-btn" href="midfight.html">Midfight</a>
-      <a class="gamemode-btn" href="bridge.html">Bridge</a>
-      <a class="gamemode-btn" href="sumo.html">Sumo</a>
-      <a class="gamemode-btn" href="nodebuff.html">NoDebuff</a>
-      <a class="gamemode-btn" href="builduhc.html">BuildUHC</a>
+      <a class="gamemode-btn" href="skywars.html">
+        <i class="fas fa-cloud"></i>
+        Skywars
+      </a>
+      <a class="gamemode-btn" href="midfight.html">
+        <i class="fas fa-fist-raised"></i>
+        Midfight
+      </a>
+      <a class="gamemode-btn" href="bridge.html">
+        <i class="fas fa-archway"></i>
+        Bridge
+      </a>
+      <a class="gamemode-btn" href="sumo.html">
+        <i class="fas fa-circle"></i>
+        Sumo
+      </a>
+      <a class="gamemode-btn" href="nodebuff.html">
+        <i class="fas fa-shield-alt"></i>
+        NoDebuff
+      </a>
+      <a class="gamemode-btn" href="builduhc.html">
+        <i class="fas fa-hammer"></i>
+        BuildUHC
+      </a>
     </div>
   </div>
+
+  <footer>
+    <p>© 2025 Bedrock Tier Testing | Last Updated: April 2025</p>
+  </footer>
 
 </body>
 </html>
