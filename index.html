@@ -3,47 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gamemode Tiers</title>
+  <title>Bedrock Tier Testing</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #1a1a1a;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 50px;
+      margin: 0;
+      background-color: #111;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
     }
-    h1 {
-      margin-bottom: 40px;
+    header {
+      padding: 20px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 80px); /* Full screen minus header */
+      padding: 20px;
+    }
+    .gamemodes {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 1200px;
     }
     .gamemode-btn {
-      background: #333;
-      padding: 20px 40px;
-      margin: 10px;
-      border: none;
-      border-radius: 10px;
-      font-size: 24px;
-      cursor: pointer;
-      transition: background 0.3s;
+      background: #222;
+      padding: 40px 60px;
+      border-radius: 12px;
       text-decoration: none;
       color: white;
+      font-size: 24px;
+      transition: background 0.3s, transform 0.3s;
+      min-width: 150px;
+      text-align: center;
     }
     .gamemode-btn:hover {
-      background: #555;
+      background: #333;
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
 
-  <h1>Choose a Gamemode</h1>
+  <header>Bedrock Tier Testing</header>
 
-  <a class="gamemode-btn" href="skywars.html">Skywars</a>
-  <a class="gamemode-btn" href="midfight.html">Midfight</a>
-  <a class="gamemode-btn" href="bridge.html">Bridge</a>
-  <a class="gamemode-btn" href="sumo.html">Sumo</a>
-  <a class="gamemode-btn" href="nodebuff.html">NoDebuff</a>
-  <a class="gamemode-btn" href="builduhc.html">BuildUHC</a>
+  <div class="container">
+    <div class="gamemodes">
+      <a class="gamemode-btn" href="skywars.html">Skywars</a>
+      <a class="gamemode-btn" href="midfight.html">Midfight</a>
+      <a class="gamemode-btn" href="bridge.html">Bridge</a>
+      <a class="gamemode-btn" href="sumo.html">Sumo</a>
+      <a class="gamemode-btn" href="nodebuff.html">NoDebuff</a>
+      <a class="gamemode-btn" href="builduhc.html">BuildUHC</a>
+    </div>
+  </div>
 
 </body>
 </html>
