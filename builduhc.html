@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BuildUHC Tier List</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #111;
+      --secondary-color: #222;
+      --text-color: #fff;
+      --accent-color: #6441a5;
+      --discord-color: #5865F2;
+      
+      --s-tier: #11806a;
+      --a-tier: #1f8b4c;
+      --b-tier: #206694;
+      --c-tier: #71368a;
+      --d-tier: #ad1457;
+      --e-tier: #992d22;
+      
+      --na-color: #3498db;
+      --eu-color: #2ecc71;
+      --as-color: #e74c3c;
+      
+      --badge-color: #fffa9a;
+    }
+    
+    body {
+      margin: 0;
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    header {
+      background-color: var(--secondary-color);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+    
+    .logo {
+      margin-right: 15px;
+      font-size: 28px;
+      color: var(--accent-color);
+    }
+    
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      flex: 1;
+    }
+    
+    .header-buttons {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 16px;
+      background-color: var(--secondary-color);
+      border: 2px solid var(--accent-color);
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+    
+    .back-button i {
+      margin-right: 8px;
+    }
+    
+    .back-button:hover {
+      background-color: var(--accent-color);
+      transform: translateX(-5px);
+    }
+    
+    .discord-button {
+      background-color: var(--discord-color);
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .discord-button i {
+      margin-right: 8px;
+      font-size: 20px;
+    }
+    
+    .discord-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      background-color: #4752C4;
+    }
+    
+    .search-container {
+      margin: 20px auto;
+      max-width: 600px;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .search-container input {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      background-color: var(--secondary-color);
+      color: white;
+      font-size: 16px;
+    }
+    
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .filter-button {
+      padding: 6px 16px;
+      background-color: var(--secondary-color);
+      border: none;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 14px;
+    }
+    
+    .filter-button.na {
+      border: 1px solid var(--na-color);
+    }
+    
+    .filter-button.eu {
+      border: 1px solid var(--eu-color);
+    }
+    
+    .filter-button.as {
+      border: 1px solid var(--as-color);
+    }
+    
+    .filter-button:hover, .filter-button.active {
+      background-color: var(--accent-color);
+    }
+    
+    .game-mode-nav {
+      background-color: var(--secondary-color);
+      padding: 15px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: thin;
+    }
+    
+    .game-mode-nav a {
+      padding: 10px 20px;
+      margin: 0 10px;
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      transition: all 0.3s;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .game-mode-nav a i {
+      margin-right: 8px;
+    }
+    
+    .game-mode-nav a:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
+    
+    .game-mode-nav a.active {
+      background-color: var(--accent-color);
+      box-shadow: 0 2px 10px rgba(100, 65, 165, 0.5);
+    }
+    
+    .container {
+      padding: 0 20px 40px;
+      max-width: 1600px;
+      margin: 0 auto;
+      overflow-x: auto;
+    }
+    
+    .tier-list {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+    }
+    
+    .tier-column {
+      min-width: 240px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .tier-label {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      font-weight: bold;
+      border-radius: 10px 10px 0 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .tier-label.s {
+      background-color: var(--s-tier);
+    }
+    
+    .tier-label.a {
+      background-color: var(--a-tier);
+    }
+    
+    .tier-label.b {
+      background-color: var(--b-tier);
+    }
+    
+    .tier-label.c {
+      background-color: var(--c-tier);
+    }
+    
+    .tier-label.d {
+      background-color: var(--d-tier);
+    }
+    
+    .tier-label.e {
+      background-color: var(--e-tier);
+    }
+    
+    .tier-players {
+      flex: 1;
+      background-color: rgba(34, 34, 34, 0.8);
+      border-radius: 0 0 10px 10px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      height: 100%;
+    }
+
+    .player-card {
+      background-color: rgba(0,0,0,0.2);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      align-items: center;
+      overflow: hidden; /* Important for the sliding effect */
+    }
+    
+    .player-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      z-index: 1;
+    }
+    
+    .player-card.na::before {
+      background-color: var(--na-color);
+    }
+    
+    .player-card.eu::before {
+      background-color: var(--eu-color);
+    }
+    
+    .player-card.as::before {
+      background-color: var(--as-color);
+    }
+    
+    .player-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+      z-index: 1;
+      background-color: rgba(0,0,0,0.4);
+    }
+    
+    .player-name {
+      font-size: 16px;
+      font-weight: bold;
+      white-space: nowrap;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+    }
+    
+    .number-one-badge {
+      background-color: var(--badge-color);
+      color: #000;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-left: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .region-badge {
+      position: absolute;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: bold;
+      right: -100px; /* Start off-screen */
+      transition: right 0.3s ease;
+      z-index: 2;
+    }
+    
+    .player-card:hover .region-badge {
+      right: 16px; /* Slide in */
+    }
+    
+    .region-badge.na {
+      background-color: var(--na-color);
+    }
+    
+    .region-badge.eu {
+      background-color: var(--eu-color);
+    }
+    
+    .region-badge.as {
+      background-color: var(--as-color);
+    }
+    
+    .empty-tier-message {
+      padding: 20px;
+      text-align: center;
+      font-style: italic;
+      color: #888;
+      flex: 1;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--secondary-color);
+      margin-top: auto;
+      font-size: 14px;
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .header-content {
+        justify-content: center;
+      }
+      
+      .header-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .back-button, .discord-button {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .tier-list {
+        flex-direction: column;
+      }
+      
+      .tier-column {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <i class="fas fa-hammer"></i>
+      </div>
+      <div class="title">BuildUHC Tier List</div>
+    </div>
+    <div class="header-buttons">
+      <a class="back-button" href="index.html">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+      <a class="discord-button" href="https://discord.gg/yuMzU7485w" target="_blank">
+        <i class="fab fa-discord"></i> Join Discord
+      </a>
+    </div>
+  </header>
+
+  <div class="game-mode-nav">
+    <a href="skywars.html">
+      <i class="fas fa-cloud"></i> Skywars
+    </a>
+    <a href="midfight.html">
+      <i class="fas fa-fist-raised"></i> Midfight
+    </a>
+    <a href="bridge.html">
+      <i class="fas fa-archway"></i> Bridge
+    </a>
+    <a href="sumo.html">
+      <i class="fas fa-circle"></i> Sumo
+    </a>
+    <a href="nodebuff.html">
+      <i class="fas fa-shield-alt"></i> NoDebuff
+    </a>
+    <a href="builduhc.html" class="active">
+      <i class="fas fa-hammer"></i> BuildUHC
+    </a>
+  </div>
+  
+  <div class="search-container">
+    <input type="text" placeholder="Search for a player..." id="playerSearch">
+  </div>
+  
+  <div class="filter-buttons">
+    <button class="filter-button active" data-filter="all">All Regions</button>
+    <button class="filter-button na" data-filter="na">North America</button>
+    <button class="filter-button eu" data-filter="eu">Europe</button>
+    <button class="filter-button as" data-filter="as">Asia</button>
+  </div>
+
+  <div class="container">
+    <div class="tier-list">
+      <!-- S Tier -->
+      <div class="tier-column">
+        <div class="tier-label s">S</div>
+        <div class="tier-players">
+          <a href="https://discord.com/users/1355245770453946399" class="player-card na">
+            <div class="player-name">Morad<span class="number-one-badge">#1</span></div>
+            <div class="region-badge na">NA</div>
+          </a>
+          <a href="https://discord.com/users/666405837463617537" class="player-card eu">
+            <div class="player-name">AE3D</div>
+            <div class="region-badge eu">EU</div>
+          </a>
+        </div>
+      </div>
+      
+      <!-- A Tier -->
+      <div class="tier-column">
+        <div class="tier-label a">A</div>
+        <div class="tier-players">
+          <a href="https://discord.com/users/1364897561499930664" class="player-card na">
+            <div class="player-name">Dqrryn</div>
+            <div class="region-badge na">NA</div>
+          </a>
+        </div>
+      </div>
+      
+      <!-- B Tier -->
+      <div class="tier-column">
+        <div class="tier-label b">B</div>
+        <div class="tier-players">
+          <a href="https://discord.com/users/1078291119730855946" class="player-card as">
+            <div class="player-name">Cashier NN</div>
+            <div class="region-badge as">AS</div>
+          </a>
+        </div>
+      </div>
+      
+      <!-- C Tier -->
+      <div class="tier-column">
+        <div class="tier-label c">C</div>
+        <div class="tier-players">
+          <div class="empty-tier-message">No players in this tier yet</div>
+        </div>
+      </div>
+      
+      <!-- D Tier -->
+      <div class="tier-column">
+        <div class="tier-label d">D</div>
+        <div class="tier-players">
+          <div class="empty-tier-message">No players in this tier yet</div>
+        </div>
+      </div>
+      
+      <!-- E Tier -->
+      <div class="tier-column">
+        <div class="tier-label e">E</div>
+        <div class="tier-players">
+          <div class="empty-tier-message">No players in this tier yet</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Bedrock Tier Testing | Last Updated: April 2025 | Made with love by qou2</p>
+  </footer>
+
+  <script>
+    document.getElementById('playerSearch').addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      const players = document.querySelectorAll('.player-card');
+      const tierColumns = document.querySelectorAll('.tier-column');
+      
+      players.forEach(player => {
+        const playerName = player.querySelector('.player-name').textContent.toLowerCase();
+        if (playerName.includes(searchTerm)) {
+          player.style.display = 'flex';
+        } else {
+          player.style.display = 'none';
+        }
+      });
+      
+      tierColumns.forEach(column => {
+        const visiblePlayers = column.querySelectorAll('.player-card[style="display: flex;"]');
+        const emptyMessage = column.querySelector('.empty-tier-message');
+        const tierPlayers = column.querySelector('.tier-players');
+        
+        if (visiblePlayers.length === 0 && !emptyMessage) {
+          const newEmptyMessage = document.createElement('div');
+          newEmptyMessage.className = 'empty-tier-message';
+          newEmptyMessage.textContent = 'No players match your search';
+          newEmptyMessage.style.display = 'block';
+          tierPlayers.appendChild(newEmptyMessage);
+        } 
+        else if (visiblePlayers.length > 0 && emptyMessage) {
+          emptyMessage.style.display = 'none';
+        }
+      });
+    });
+    
+    const filterButtons = document.querySelectorAll('.filter-button');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const filter = this.getAttribute('data-filter');
+        
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        
+        const players = document.querySelectorAll('.player-card');
+        players.forEach(player => {
+          if (filter === 'all') {
+            player.style.display = 'flex';
+          } else {
+            if (player.classList.contains(filter)) {
+              player.style.display = 'flex';
+            } else {
+              player.style.display = 'none';
+            }
+          }
+        });
+        
+        const tierColumns = document.querySelectorAll('.tier-column');
+        tierColumns.forEach(column => {
+          const visiblePlayers = Array.from(column.querySelectorAll('.player-card')).filter(p => p.style.display !== 'none');
+          const tierPlayers = column.querySelector('.tier-players');
+          const existingEmptyMessage = column.querySelector('.empty-tier-message');
+          
+          if (visiblePlayers.length === 0) {
+            if (!existingEmptyMessage) {
+              const emptyMessage = document.createElement('div');
+              emptyMessage.className = 'empty-tier-message';
+              emptyMessage.textContent = 'No players in this region';
+              tierPlayers.appendChild(emptyMessage);
+            } else {
+              existingEmptyMessage.style.display = 'block';
+            }
+          } else if (existingEmptyMessage) {
+            existingEmptyMessage.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
