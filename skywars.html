@@ -7,10 +7,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
-      --primary-color: #111;
-      --secondary-color: #222;
-      --text-color: #fff;
-      --accent-color: #6441a5;
+      --primary-bg: #0f1318;
+      --secondary-bg: #161b22;
+      --card-bg: rgba(30, 36, 46, 0.6);
+      --text-color: #e6edf3;
+      --accent-color: #6e5bdf;
       --discord-color: #5865F2;
       
       --s-tier: #11806a;
@@ -27,9 +28,17 @@
       --badge-color: #fffa9a;
     }
     
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      background-color: var(--primary-color);
+      padding: 0;
+    }
+    
+    body {
+      background-color: var(--primary-bg);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(110, 91, 223, 0.1), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(66, 184, 131, 0.1), transparent 40%);
       color: var(--text-color);
       font-family: 'Segoe UI', 'Arial', sans-serif;
       min-height: 100vh;
@@ -38,11 +47,16 @@
     }
     
     header {
-      background-color: var(--secondary-color);
+      background-color: var(--secondary-bg);
       padding: 20px;
       display: flex;
       align-items: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(110, 91, 223, 0.2);
     }
     
     .header-content {
@@ -55,12 +69,17 @@
       margin-right: 15px;
       font-size: 28px;
       color: var(--accent-color);
+      filter: drop-shadow(0 0 8px rgba(110, 91, 223, 0.4));
     }
     
     .title {
       font-size: 24px;
       font-weight: bold;
       flex: 1;
+      background: linear-gradient(to right, #6e5bdf, #42b883);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     
     .header-buttons {
@@ -72,14 +91,33 @@
     .back-button {
       display: inline-flex;
       align-items: center;
-      padding: 8px 16px;
-      background-color: var(--secondary-color);
+      padding: 10px 18px;
+      background-color: transparent;
       border: 2px solid var(--accent-color);
-      border-radius: 8px;
+      border-radius: 12px;
       text-decoration: none;
-      color: white;
+      color: var(--text-color);
       font-size: 16px;
       transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .back-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(110, 91, 223, 0.2), transparent);
+      transition: left 0.7s;
+      z-index: -1;
+    }
+    
+    .back-button:hover::before {
+      left: 100%;
     }
     
     .back-button i {
@@ -87,21 +125,39 @@
     }
     
     .back-button:hover {
-      background-color: var(--accent-color);
       transform: translateX(-5px);
+      box-shadow: 0 0 15px rgba(110, 91, 223, 0.5);
     }
     
     .discord-button {
-      background-color: var(--discord-color);
+      background: linear-gradient(135deg, var(--discord-color), #4752C4);
       padding: 10px 18px;
-      border-radius: 8px;
+      border-radius: 12px;
       text-decoration: none;
       color: white;
       font-size: 16px;
       display: flex;
       align-items: center;
       transition: all 0.3s;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .discord-button::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.6s;
+    }
+    
+    .discord-button:hover::after {
+      left: 100%;
     }
     
     .discord-button i {
@@ -111,176 +167,275 @@
     
     .discord-button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-      background-color: #4752C4;
+      box-shadow: 0 6px 20px rgba(88, 101, 242, 0.6);
     }
     
     .search-container {
-      margin: 20px auto;
+      margin: 30px auto;
       max-width: 600px;
       display: flex;
       gap: 10px;
+      position: relative;
     }
     
     .search-container input {
       flex: 1;
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
-      background-color: var(--secondary-color);
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: 2px solid rgba(110, 91, 223, 0.2);
+      background-color: rgba(22, 27, 34, 0.7);
       color: white;
       font-size: 16px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      backdrop-filter: blur(5px);
+    }
+    
+    .search-container input:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 4px rgba(110, 91, 223, 0.2);
+    }
+    
+    .search-container::before {
+      content: '\f002';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent-color);
+      opacity: 0.7;
     }
     
     .filter-buttons {
       display: flex;
       justify-content: center;
       gap: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       flex-wrap: wrap;
+      padding: 0 20px;
     }
     
     .filter-button {
-      padding: 6px 16px;
-      background-color: var(--secondary-color);
+      padding: 8px 20px;
+      background-color: rgba(22, 27, 34, 0.7);
       border: none;
-      border-radius: 20px;
-      color: white;
+      border-radius: 30px;
+      color: var(--text-color);
       cursor: pointer;
       transition: all 0.3s;
       font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
     }
     
-    .filter-button.na {
-      border: 1px solid var(--na-color);
+    .filter-button::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      bottom: 0;
+      left: 0;
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s;
     }
     
-    .filter-button.eu {
-      border: 1px solid var(--eu-color);
+    .filter-button.na::after {
+      background-color: var(--na-color);
     }
     
-    .filter-button.as {
-      border: 1px solid var(--as-color);
+    .filter-button.eu::after {
+      background-color: var(--eu-color);
     }
     
-    .filter-button:hover, .filter-button.active {
+    .filter-button.as::after {
+      background-color: var(--as-color);
+    }
+    
+    .filter-button:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+    
+    .filter-button.active {
       background-color: var(--accent-color);
+      box-shadow: 0 4px 15px rgba(110, 91, 223, 0.4);
     }
     
     .game-mode-nav {
-      background-color: var(--secondary-color);
+      background-color: var(--secondary-bg);
       padding: 15px;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
       display: flex;
       justify-content: center;
       overflow-x: auto;
       white-space: nowrap;
       scrollbar-width: thin;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
     
     .game-mode-nav a {
-      padding: 10px 20px;
+      padding: 12px 24px;
       margin: 0 10px;
       text-decoration: none;
-      color: white;
+      color: var(--text-color);
       font-size: 16px;
       transition: all 0.3s;
-      border-radius: 20px;
+      border-radius: 30px;
       display: inline-flex;
       align-items: center;
+      position: relative;
     }
     
     .game-mode-nav a i {
       margin-right: 8px;
+      font-size: 18px;
+    }
+    
+    .game-mode-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 70%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-color), var(--c-tier));
+      transition: transform 0.3s;
+      border-radius: 3px;
+    }
+    
+    .game-mode-nav a:hover::after {
+      transform: translateX(-50%) scaleX(1);
     }
     
     .game-mode-nav a:hover {
-      background-color: rgba(255,255,255,0.1);
+      color: white;
     }
     
     .game-mode-nav a.active {
-      background-color: var(--accent-color);
-      box-shadow: 0 2px 10px rgba(100, 65, 165, 0.5);
+      background: linear-gradient(135deg, var(--accent-color), rgba(110, 91, 223, 0.7));
+      box-shadow: 0 5px 15px rgba(110, 91, 223, 0.3);
+      transform: translateY(-3px);
+    }
+    
+    .game-mode-nav a.active::after {
+      transform: translateX(-50%) scaleX(0);
     }
     
     .container {
-      padding: 0 20px 40px;
+      padding: 0 20px 60px;
       max-width: 1600px;
       margin: 0 auto;
-      overflow-x: auto;
     }
     
     .tier-list {
       display: flex;
       gap: 20px;
-      overflow-x: auto;
       padding-bottom: 20px;
+      justify-content: center;
     }
     
     .tier-column {
       min-width: 240px;
+      width: 100%;
+      max-width: 300px;
       display: flex;
       flex-direction: column;
+      transition: transform 0.3s;
+    }
+    
+    .tier-column:hover {
+      transform: translateY(-5px);
     }
     
     .tier-label {
-      height: 60px;
+      height: 70px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 34px;
+      font-size: 38px;
       font-weight: bold;
-      border-radius: 10px 10px 0 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 15px 15px 0 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .tier-label::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.2), transparent 70%);
+      top: -50%;
+      left: -50%;
+      transition: all 0.5s;
+    }
+    
+    .tier-column:hover .tier-label::before {
+      top: -30%;
+      left: -30%;
     }
     
     .tier-label.s {
-      background-color: var(--s-tier);
+      background: linear-gradient(135deg, var(--s-tier), #e74c3c);
     }
     
     .tier-label.a {
-      background-color: var(--a-tier);
+      background: linear-gradient(135deg, var(--a-tier), #e67e22);
     }
     
     .tier-label.b {
-      background-color: var(--b-tier);
+      background: linear-gradient(135deg, var(--b-tier), #f1c40f);
     }
     
     .tier-label.c {
-      background-color: var(--c-tier);
+      background: linear-gradient(135deg, var(--c-tier), #27ae60);
     }
     
     .tier-label.d {
-      background-color: var(--d-tier);
+      background: linear-gradient(135deg, var(--d-tier), #3498db);
     }
     
     .tier-label.e {
-      background-color: var(--e-tier);
+      background: linear-gradient(135deg, var(--e-tier), #8e44ad);
     }
     
     .tier-players {
       flex: 1;
-      background-color: rgba(34, 34, 34, 0.8);
-      border-radius: 0 0 10px 10px;
-      padding: 15px;
+      background-color: rgba(30, 36, 46, 0.7);
+      border-radius: 0 0 15px 15px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       gap: 15px;
-      height: 100%;
+      min-height: 300px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
     
     .player-card {
-      background-color: rgba(0,0,0,0.2);
-      border-radius: 8px;
-      padding: 12px 16px;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 16px 20px;
       display: flex;
       position: relative;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: all 0.3s ease;
       text-decoration: none;
-      color: white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      color: var(--text-color);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       align-items: center;
-      overflow: hidden; /* Important for the sliding effect */
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
     
     .player-card::before {
@@ -288,95 +443,122 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 4px;
+      width: 5px;
       height: 100%;
       z-index: 1;
+      transition: all 0.3s;
     }
     
     .player-card.na::before {
-      background-color: var(--na-color);
+      background: linear-gradient(to bottom, var(--na-color), rgba(52, 152, 219, 0.7));
     }
     
     .player-card.eu::before {
-      background-color: var(--eu-color);
+      background: linear-gradient(to bottom, var(--eu-color), rgba(46, 204, 113, 0.7));
     }
     
     .player-card.as::before {
-      background-color: var(--as-color);
+      background: linear-gradient(to bottom, var(--as-color), rgba(231, 76, 60, 0.7));
     }
     
     .player-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
       z-index: 1;
-      background-color: rgba(0,0,0,0.4);
+      background-color: rgba(40, 46, 56, 0.9);
+    }
+    
+    .player-card:hover::before {
+      width: 8px;
     }
     
     .player-name {
-      font-size: 16px;
-      font-weight: bold;
+      font-size: 17px;
+      font-weight: 600;
       white-space: nowrap;
       position: relative;
       z-index: 2;
       display: flex;
       align-items: center;
+      letter-spacing: 0.5px;
     }
     
     .number-one-badge {
-      background-color: var(--badge-color);
+      background: linear-gradient(135deg, #ffda6a, #ffae00);
       color: #000;
-      padding: 2px 6px;
-      border-radius: 10px;
+      padding: 3px 8px;
+      border-radius: 20px;
       font-size: 12px;
       font-weight: bold;
-      margin-left: 8px;
+      margin-left: 10px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 8px rgba(255, 218, 106, 0.4);
     }
     
     .region-badge {
       position: absolute;
-      padding: 3px 8px;
+      padding: 5px 12px;
       border-radius: 20px;
-      font-size: 11px;
-      font-weight: bold;
-      right: -100px; /* Start off-screen */
+      font-size: 12px;
+      font-weight: 600;
+      right: -100px;
       transition: right 0.3s ease;
       z-index: 2;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     
     .player-card:hover .region-badge {
-      right: 16px; /* Slide in */
+      right: 16px;
     }
     
     .region-badge.na {
-      background-color: var(--na-color);
+      background: linear-gradient(135deg, var(--na-color), #2980b9);
     }
     
     .region-badge.eu {
-      background-color: var(--eu-color);
+      background: linear-gradient(135deg, var(--eu-color), #27ae60);
     }
     
     .region-badge.as {
-      background-color: var(--as-color);
+      background: linear-gradient(135deg, var(--as-color), #c0392b);
     }
     
     .empty-tier-message {
-      padding: 20px;
+      padding: 30px;
       text-align: center;
       font-style: italic;
-      color: #888;
+      color: rgba(230, 237, 243, 0.5);
       flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      border: 2px dashed rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      margin: 10px 0;
     }
     
     footer {
       text-align: center;
-      padding: 20px;
-      background-color: var(--secondary-color);
+      padding: 30px;
+      background-color: var(--secondary-bg);
       margin-top: auto;
       font-size: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
     }
     
     @media (max-width: 768px) {
@@ -401,11 +583,84 @@
       
       .tier-list {
         flex-direction: column;
+        align-items: center;
       }
       
       .tier-column {
+        min-width: unset;
         width: 100%;
       }
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(22, 27, 34, 0.6);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-color);
+      border-radius: 10px;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .tier-column {
+      animation: fadeIn 0.5s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .tier-column:nth-child(1) { animation-delay: 0.1s; }
+    .tier-column:nth-child(2) { animation-delay: 0.2s; }
+    .tier-column:nth-child(3) { animation-delay: 0.3s; }
+    .tier-column:nth-child(4) { animation-delay: 0.4s; }
+    .tier-column:nth-child(5) { animation-delay: 0.5s; }
+    
+    /* New sparkle effects for #1 badge */
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+    
+    .number-one-badge::after {
+      content: '★';
+      position: absolute;
+      font-size: 10px;
+      right: -5px;
+      top: -5px;
+      color: #ffff00;
+      text-shadow: 0 0 5px gold;
+      animation: sparkle 2s infinite;
+    }
+    
+    /* Floating animation */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .player-card:hover .player-name {
+      animation: float 2s ease-in-out infinite;
+    }
+    
+    /* Pulse animation for logo */
+    @keyframes pulse {
+      0% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(110, 91, 223, 0.4)); }
+      50% { transform: scale(1.05); filter: drop-shadow(0 0 12px rgba(110, 91, 223, 0.7)); }
+      100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(110, 91, 223, 0.4)); }
+    }
+    
+    .logo i {
+      animation: pulse 3s infinite;
     }
   </style>
 </head>
@@ -544,7 +799,7 @@
             <div class="player-name">craigmcyt</div>
             <div class="region-badge na">NA</div>
           </a>
-		  <a href="https://discord.com/users/763476615270891561" class="player-card eu">
+          <a href="https://discord.com/users/763476615270891561" class="player-card eu">
             <div class="player-name">FrashdYTz</div>
             <div class="region-badge eu">EU</div>
           </a>
@@ -562,7 +817,7 @@
           <a href="https://discord.com/users/1227056207336968204" class="player-card na">
             <div class="player-name">mqrzyt</div>
             <div class="region-badge na">NA</div>
-          </a>
+</a>
           <a href="https://discord.com/users/1315163549252849677" class="player-card eu">
             <div class="player-name">Sweat</div>
             <div class="region-badge eu">EU</div>
@@ -574,7 +829,8 @@
           <a href="https://discord.com/users/1084759872245092423" class="player-card as">
             <div class="player-name">Frosttsammyy</div>
             <div class="region-badge as">AS</div>
-		<a href="https://discord.com/users/1356637033291976734" class="player-card eu">
+          </a>
+          <a href="https://discord.com/users/1356637033291976734" class="player-card eu">
             <div class="player-name">SZ Zarqm</div>
             <div class="region-badge eu">EU</div>
           </a>
@@ -585,7 +841,7 @@
       <div class="tier-column">
         <div class="tier-label d">D</div>
         <div class="tier-players">
-		<a href="https://discord.com/users/1363530881612124221" class="player-card eu">
+          <a href="https://discord.com/users/1363530881612124221" class="player-card eu">
             <div class="player-name">zvolicx</div>
             <div class="region-badge eu">EU</div>
           </a>
