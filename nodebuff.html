@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nodebuff Tier List</title>
+  <title>Midfight Tier List</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
@@ -13,6 +13,7 @@
       --accent-color: #6441a5;
       --discord-color: #5865F2;
       
+      /* Tier Colors */
       --s-tier: #11806a;
       --a-tier: #1f8b4c;
       --b-tier: #206694;
@@ -20,11 +21,14 @@
       --d-tier: #ad1457;
       --e-tier: #992d22;
       
+      /* Region Colors */
       --na-color: #3498db;
       --eu-color: #2ecc71;
       --as-color: #e74c3c;
       
+      /* Badge Colors */
       --badge-color: #fffa9a;
+      --queen-badge-color: #d53f8c;
     }
     
     body {
@@ -210,6 +214,7 @@
       overflow-x: auto;
     }
     
+    /* Horizontal tier columns - new styles */
     .tier-list {
       display: flex;
       gap: 20px;
@@ -336,6 +341,20 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
     
+    .queen-badge {
+      background-color: var(--queen-badge-color);
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-left: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
     .region-badge {
       position: absolute;
       padding: 3px 8px;
@@ -414,9 +433,9 @@
   <header>
     <div class="header-content">
       <div class="logo">
-        <i class="fas fa-shield-alt"></i>
+        <i class="fas fa-fist-raised"></i>
       </div>
-      <div class="title">Nodebuff Tier List</div>
+      <div class="title">Midfight Tier List</div>
     </div>
     <div class="header-buttons">
       <a class="back-button" href="index.html">
@@ -432,7 +451,7 @@
     <a href="skywars.html">
       <i class="fas fa-cloud"></i> Skywars
     </a>
-    <a href="midfight.html">
+    <a href="midfight.html" class="active">
       <i class="fas fa-fist-raised"></i> Midfight
     </a>
     <a href="bridge.html">
@@ -441,7 +460,7 @@
     <a href="sumo.html">
       <i class="fas fa-circle"></i> Sumo
     </a>
-    <a href="nodebuff.html" class="active">
+    <a href="nodebuff.html">
       <i class="fas fa-shield-alt"></i> NoDebuff
     </a>
     <a href="builduhc.html">
@@ -466,12 +485,19 @@
       <div class="tier-column">
         <div class="tier-label s">S</div>
         <div class="tier-players">
+          <a href="https://discord.com/users/915716682390069269" class="player-card na">
+            <div class="player-name">MisaleanousNew</div>
+            <div class="region-badge na">NA</div>
+          </a>
+          <a href="https://discord.com/users/899829397807304724" class="player-card as">
+            <div class="player-name">qvivixne<span class="queen-badge">queen</span></div>
+            <div class="region-badge as">AS</div>
+          </a>
           <a href="https://discord.com/users/1355245770453946399" class="player-card na">
             <div class="player-name">Morad<span class="number-one-badge">#1</span></div>
             <div class="region-badge na">NA</div>
-          </a>
-          <a href="https://discord.com/users/915716682390069269" class="player-card na">
-            <div class="player-name">MisaleanousNew</div>
+		<a href="https://discord.com/users/1341247619628011561" class="player-card na">
+            <div class="player-name">xyzzzii</div>
             <div class="region-badge na">NA</div>
           </a>
         </div>
@@ -481,8 +507,8 @@
       <div class="tier-column">
         <div class="tier-label a">A</div>
         <div class="tier-players">
-          <a href="https://discord.com/users/1364897561499930664" class="player-card na">
-            <div class="player-name">Dqrryn</div>
+          <a href="https://discord.com/users/800738861290487838" class="player-card na">
+            <div class="player-name">zH1by</div>
             <div class="region-badge na">NA</div>
           </a>
         </div>
@@ -492,9 +518,17 @@
       <div class="tier-column">
         <div class="tier-label b">B</div>
         <div class="tier-players">
-          <a href="https://discord.com/users/1196831517276635260" class="player-card na">
-            <div class="player-name">FutureMX</div>
+          <a href="https://discord.com/users/1364897561499930664" class="player-card na">
+            <div class="player-name">Dqrryn</div>
             <div class="region-badge na">NA</div>
+          </a>
+          <a href="https://discord.com/users/1208410898385870871" class="player-card eu">
+            <div class="player-name">cventyc</div>
+            <div class="region-badge eu">EU</div>
+          </a>
+		  <a href="https://discord.com/users/935012523982336071" class="player-card as">
+            <div class="player-name">MLGod0</div>
+            <div class="region-badge as">AS</div>
           </a>
         </div>
       </div>
@@ -503,9 +537,25 @@
       <div class="tier-column">
         <div class="tier-label c">C</div>
         <div class="tier-players">
-          <a href="https://discord.com/users/1228837831796064266" class="player-card na">
-            <div class="player-name">strx</div>
+          <a href="https://discord.com/users/1196831517276635260" class="player-card na">
+            <div class="player-name">FutureMX</div>
             <div class="region-badge na">NA</div>
+          </a>
+          <a href="https://discord.com/users/1078291119730855946" class="player-card as">
+            <div class="player-name">Cashier NN</div>
+            <div class="region-badge as">AS</div>
+          </a>
+          <a href="https://discord.com/users/1356637033291976734" class="player-card eu">
+            <div class="player-name">SZ Zarqm</div>
+            <div class="region-badge eu">EU</div>
+          </a>
+          <a href="https://discord.com/users/959868708094890055" class="player-card na">
+            <div class="player-name">qMrng</div>
+            <div class="region-badge na">NA</div>
+          </a>
+          <a href="https://discord.com/users/1274284136911212624" class="player-card as">
+            <div class="player-name">Notkent</div>
+            <div class="region-badge as">AS</div>
           </a>
         </div>
       </div>
