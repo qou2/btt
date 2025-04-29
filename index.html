@@ -31,9 +31,8 @@
     body {
       background-color: var(--primary-bg);
       background-image: 
-        radial-gradient(circle at 25% 25%, rgba(110, 91, 223, 0.07), transparent 30%),
-        radial-gradient(circle at 75% 75%, rgba(66, 184, 131, 0.07), transparent 30%),
-        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236e5bdf' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        radial-gradient(circle at 50% 0%, rgba(110, 91, 223, 0.1), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(66, 184, 131, 0.1), transparent 40%);
       color: var(--text-color);
       font-family: 'Segoe UI', 'Arial', sans-serif;
       min-height: 100vh;
@@ -41,21 +40,19 @@
       flex-direction: column;
     }
     
-        
     header {
-      background-color: rgba(21, 24, 32, 0.85);
+      background-color: var(--secondary-bg);
       padding: 20px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 25px rgba(0,0,0,0.3);
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(110, 91, 223, 0.2);
     }
-	  
+    
     .header-content {
       display: flex;
       align-items: center;
@@ -70,9 +67,10 @@
     }
     
     .header-center img {
-      max-height: 50px;
+      max-height: 150px;
       display: block;
     }
+    
     .logo {
       margin-right: 15px;
       font-size: 28px;
@@ -490,6 +488,16 @@
       animation: pulse 3s infinite;
     }
     
+    .header-center img {
+      filter: drop-shadow(0 0 10px rgba(88, 101, 242, 0.4));
+      transition: all 0.3s ease;
+    }
+    
+    .header-center img:hover {
+      filter: drop-shadow(0 0 15px rgba(255, 165, 0, 0.8));
+      transform: scale(1.05);
+    }
+    
     /* Custom scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
@@ -553,19 +561,65 @@
         font-size: 14px;
       }
     }
+  .theme-toggle {
+    margin-right: auto;
+    padding-left: 20px;
+  }
+  
+  .theme-toggle-btn {
+    background: linear-gradient(135deg, var(--accent-color), #4752C4);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(110, 91, 223, 0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .theme-toggle-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(110, 91, 223, 0.6);
+  }
+  
+  .theme-toggle-btn i {
+    font-size: 18px;
+    transition: transform 0.5s ease;
+  }
+  
+  .theme-toggle-btn:hover i {
+    transform: rotate(30deg);
+  }
+  
+  /* Light theme variables (will be toggled via JavaScript) */
+  body.light-theme {
+    --primary-bg: #f5f7fa;
+    --secondary-bg: #ffffff;
+    --card-bg: rgba(240, 242, 245, 0.8);
+    --text-color: #333333;
+  }
   </style>
 </head>
 <body>
 
-  <header>
+    <header>
     <div class="header-content">
-      <div class="logo">
-        <i class="fas fa-cubes"></i>
+      <div class="theme-toggle">
+        <button id="theme-toggle-btn" class="theme-toggle-btn">
+          <i class="fas fa-moon"></i>
+        </button>
       </div>
-	    <div class="header-center">
-      <img src="Bedrock-Tier-Testing.png" alt="Bedrock Tier Testing">
-    </div>
-      <div class="title">Bedrock Tier Testing</div>
+      <div class="header-center">
+        <a href="index.html">
+          <img src="bttt.png" alt="Bedrock Tier Testing Logo">
+        </a>
+      </div>    
     </div>
     <div class="header-buttons">
       <a class="discord-button" href="https://discord.gg/yuMzU7485w" target="_blank">
@@ -606,11 +660,11 @@
     
     <div class="stats-row">
       <div class="stat-box">
-        <div class="stat-number">79</div>
+        <div class="stat-number">55</div>
         <div class="stat-label">Active Members</div>
       </div>
       <div class="stat-box">
-        <div class="stat-number">85</div>
+        <div class="stat-number">58</div>
         <div class="stat-label">Tests Completed</div>
       </div>
       <div class="stat-box">
@@ -624,26 +678,32 @@
       <a class="gamemode-btn" href="skywars.html">
         <i class="fas fa-cloud"></i>
         Skywars
+        <span class="gamemode-tooltip">Battle opponents on floating islands with custom kits</span>
       </a>
       <a class="gamemode-btn" href="midfight.html">
         <i class="fas fa-fist-raised"></i>
         Midfight
+        <span class="gamemode-tooltip">Fast-paced combat in an enclosed arena</span>
       </a>
       <a class="gamemode-btn" href="bridge.html">
         <i class="fas fa-archway"></i>
         Bridge
+        <span class="gamemode-tooltip">Score points by crossing to your opponent's side</span>
       </a>
       <a class="gamemode-btn" href="sumo.html">
         <i class="fas fa-circle"></i>
         Sumo
+        <span class="gamemode-tooltip">Knock your opponent off the platform to win</span>
       </a>
       <a class="gamemode-btn" href="nodebuff.html">
         <i class="fas fa-shield-alt"></i>
         NoDebuff
+        <span class="gamemode-tooltip">PvP with health potions and no status effects</span>
       </a>
       <a class="gamemode-btn" href="builduhc.html">
         <i class="fas fa-hammer"></i>
         BuildUHC
+        <span class="gamemode-tooltip">Strategy-based PvP with building mechanics</span>
       </a>
     </div>
     
@@ -662,7 +722,6 @@
   </footer>
 
   <script>
-    // Game mode navigation highlighting
     document.addEventListener('DOMContentLoaded', function() {
       const currentLocation = window.location.pathname;
       const navLinks = document.querySelectorAll('.game-mode-nav a');
@@ -674,6 +733,33 @@
         }
       });
     });
+  document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('theme-toggle-btn');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.body.classList.add('light-theme');
+      themeIcon.classList.replace('fa-moon', 'fa-sun');
+    }
+    
+    themeToggle.addEventListener('click', function() {
+      document.body.classList.toggle('light-theme');
+      
+      if (document.body.classList.contains('light-theme')) {
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+        localStorage.setItem('theme', 'light');
+      } else {
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+        localStorage.setItem('theme', 'dark');
+      }
+      
+      themeIcon.classList.add('rotate');
+      setTimeout(() => {
+        themeIcon.classList.remove('rotate');
+      }, 500);
+    });
+  });
   </script>
 </body>
 </html>
