@@ -636,30 +636,52 @@
       animation: pulse 3s infinite;
     }
     
-    @media (max-width: 768px) {
+@media (max-width: 768px) {
       header {
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px;
       }
       
       .header-content {
-        justify-content: center;
+        flex: 0 0 auto;
+        justify-content: flex-start;
       }
       
       .header-center {
-        position: relative;
-        left: 0;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        left: auto;
         transform: none;
-        margin: 10px 0;
+        margin: 0;
+      }
+      
+      .header-center img {
+        max-height: 40px;
+      }
+      
+      .title {
+        font-size: 18px;
+      }
+      
+      .logo {
+        font-size: 20px;
+        margin-right: 10px;
       }
       
       .header-buttons {
-        flex-direction: column;
+        flex-direction: row;
         width: 100%;
+        gap: 8px;
+        margin-top: 5px;
       }
       
       .btn {
-        width: 100%;
+        padding: 6px 12px;
+        font-size: 14px;
+        flex: 1;
         justify-content: center;
       }
       
@@ -671,6 +693,17 @@
       .tier-column {
         min-width: unset;
         width: 100%;
+      }
+      
+      .game-mode-nav {
+        padding: 8px 5px;
+        margin-bottom: 20px;
+      }
+      
+      .game-mode-nav a {
+        padding: 8px 12px;
+        font-size: 14px;
+        margin: 0 5px;
       }
     }
   </style>
