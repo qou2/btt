@@ -92,7 +92,7 @@
     }
     
     .header-center img {
-      max-height: 50px;
+      max-height: 150px;
       display: block;
     }
     
@@ -623,7 +623,15 @@
       50% { transform: scale(1.05); filter: drop-shadow(0 0 12px rgba(110, 91, 223, 0.7)); }
       100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(110, 91, 223, 0.4)); }
     }
+      .header-center img {
+      filter: drop-shadow(0 0 10px rgba(88, 101, 242, 0.4));
+      transition: all 0.3s ease;
+    }
     
+    .header-center img:hover {
+      filter: drop-shadow(0 0 15px rgba(255, 165, 0, 0.8));
+      transform: scale(1.05);
+    }
     .logo i {
       animation: pulse 3s infinite;
     }
@@ -676,8 +684,10 @@
       </div>
       <div class="title">Sumo Tier List</div>
     </div>
-    <div class="header-center">
-      <img src="Bedrock-Tier-Testing.png" alt="Bedrock Tier Testing">
+   <div class="header-center">
+        <a href="index.html">
+          <img src="bttt.png" alt="Bedrock Tier Testing Logo">
+        </a>
     </div>
     <div class="header-buttons">
       <a class="btn back-button" href="index.html">
