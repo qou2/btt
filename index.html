@@ -745,7 +745,7 @@
     <p>© 2025 Bedrock Tier Testing | Last Updated: April 2025 | Made with love by qou2</p>
   </footer>
 
-  <script>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
       const currentLocation = window.location.pathname;
       const navLinks = document.querySelectorAll('.game-mode-nav a');
@@ -756,34 +756,61 @@
           link.classList.add('active');
         }
       });
-    });
-  document.addEventListener('DOMContentLoaded', function() {
-    const themeToggle = document.getElementById('theme-toggle-btn');
-    const themeIcon = themeToggle.querySelector('i');
-    
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      document.body.classList.add('light-theme');
-      themeIcon.classList.replace('fa-moon', 'fa-sun');
-    }
-    
-    themeToggle.addEventListener('click', function() {
-      document.body.classList.toggle('light-theme');
       
-      if (document.body.classList.contains('light-theme')) {
+      const themeToggle = document.getElementById('theme-toggle-btn');
+      const themeIcon = themeToggle.querySelector('i');
+      
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
         themeIcon.classList.replace('fa-moon', 'fa-sun');
-        localStorage.setItem('theme', 'light');
-      } else {
-        themeIcon.classList.replace('fa-sun', 'fa-moon');
-        localStorage.setItem('theme', 'dark');
       }
       
-      themeIcon.classList.add('rotate');
-      setTimeout(() => {
-        themeIcon.classList.remove('rotate');
-      }, 500);
+      themeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('light-theme');
+        
+        if (document.body.classList.contains('light-theme')) {
+          themeIcon.classList.replace('fa-moon', 'fa-sun');
+          localStorage.setItem('theme', 'light');
+        } else {
+          themeIcon.classList.replace('fa-sun', 'fa-moon');
+          localStorage.setItem('theme', 'dark');
+        }
+        
+        themeIcon.classList.add('rotate');
+        setTimeout(() => {
+          themeIcon.classList.remove('rotate');
+        }, 500);
+      });
+      
+      const statNumbers = document.querySelectorAll('.stat-number');
+      statNumbers.forEach(counter => {
+        const finalValue = parseInt(counter.textContent, 10);
+        counter.textContent = "0";
+        
+        function animateValue(start, end, duration) {
+          let startTimestamp = null;
+          const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            
+            const currentValue = Math.floor(start + easeProgress * (end - start));
+            counter.textContent = currentValue;
+            
+            if (progress < 1) {
+              window.requestAnimationFrame(step);
+            }
+          };
+          window.requestAnimationFrame(step);
+        }
+        
+        setTimeout(() => {
+          animateValue(0, finalValue, 2000);
+        }, 300);
+      });
     });
-  });
   </script>
 </body>
 </html>
