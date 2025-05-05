@@ -27,6 +27,7 @@
       --eu-color: #2ecc71;
       --as-color: #e74c3c;
       --tester-color: #fff491;
+      --not-color: #870000;
     }
     
     * {
@@ -531,7 +532,20 @@
       text-shadow: 0 0 5px yellow;
       animation: sparkle 2s infinite;
     }
-    
+     .not-badge {
+      background: linear-gradient(135deg, var(--not-color), #870000);
+      color: white;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-left: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(94, 0, 0, 0.4);
+      position: relative;
+    }
     .region-badge {
       position: absolute;
       padding: 5px 12px;
@@ -817,7 +831,7 @@
             <div class="region-badge na">NA</div>
           </a>
       <a href="https://discord.com/users/1357340264200540311" class="player-card as">
-            <div class="player-name">NOTK3NT</div>
+            <div class="player-name">NOTK3NT<span class="not-badge">NOT</span></div>
             <div class="region-badge as">AS</div>
           </a>
           <a href="https://discord.com/users/1027468766596038677" class="player-card eu">
