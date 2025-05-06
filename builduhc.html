@@ -15,7 +15,8 @@
       --text-color: #e6edf3;
       --accent-color: #7d70e7;
       --discord-color: #5865F2;
-	    
+
+      --splus-tier: #000000;
       --s-tier: #11806a;
       --a-tier: #1f8b4c;
       --b-tier: #206694;
@@ -399,7 +400,11 @@
       top: -30%;
       left: -30%;
     }
-    
+
+     .tier-label.splus {
+      background: linear-gradient(135deg, var(--splus-tier), #000000);
+    }
+	  
     .tier-label.s {
       background: linear-gradient(135deg, var(--s-tier), #e74c3c);
     }
@@ -815,6 +820,13 @@
 
   <div class="container">
     <div class="tier-list">
+	   <!-- S+ Tier -->
+      <div class="tier-column">
+        <div class="tier-label splus">S+</div>
+        <div class="tier-players">
+          <div class="empty-tier-message">No players in this tier yet</div>
+        </div>
+      </div>	    
       <!-- S Tier -->
       <div class="tier-column">
         <div class="tier-label s">S</div>
