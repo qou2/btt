@@ -341,23 +341,28 @@
       margin: 0 auto;
     }
     
-    .tier-list {
-      display: flex;
-      gap: 20px;
-      padding-bottom: 20px;
-      justify-content: center;
-    }
+.tier-list {
+  display: flex;
+  flex-direction: row;  
+  gap: 20px;
+  padding-bottom: 20px;
+  justify-content: center;
+  flex-wrap: nowrap; /* Changed from wrap to nowrap */
+  width: 100%;
+  margin: 0 auto;
+}
     
-    .tier-column {
-      min-width: 240px;
-      width: 100%;
-      max-width: 300px;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.3s;
-      animation: fadeIn 0.5s ease-out forwards;
-      opacity: 0;
-    }
+.tier-column {
+  flex: 1;
+  min-width: 200px; /* Reduced minimum width */
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+
     
     .tier-column:hover {
       transform: translateY(-5px);
@@ -800,36 +805,36 @@
       <div class="tier-column">
         <div class="tier-label a">A</div>
         <div class="tier-players">
-    <a href="https://discord.com/users/642997046269181963" class="player-card as">
-            <div class="player-name">xpqvi<span class="tester-badge">Tester</span></div>
-            <div class="region-badge as">AS</div>
-          </a>
+			<a href="https://discord.com/users/642997046269181963" class="player-card as">
+			<div class="player-name">xpqvi<span class="tester-badge">Tester</span></div>
+			<div class="region-badge as">AS</div>
+		</a>
        <a href="https://discord.com/users/1366585782671769750" class="player-card as">
             <div class="player-name">xluke_3</div>
             <div class="region-badge as">AS</div>
-	  </a>
+	   </a>
         <a href="https://discord.com/users/800738861290487838" class="player-card na">
             <div class="player-name">zH1by<span class="tester-badge">Tester</span></div>
             <div class="region-badge na">NA</div>
-          </a>
+       </a>
           <a href="https://discord.com/users/457205376144769026" class="player-card as">
             <div class="player-name">Valatic6086</div>
             <div class="region-badge as">AS</div>
-	  </a>
-          <div class="player-card na">
+	   </a>
+		 <a href="https://discord.com/users/752966925180600450" class="player-card na">
             <div class="player-name">2much.rackzz</div>
             <div class="region-badge na">NA</div>
 	  </a>
       <a href="https://discord.com/users/765837555593117707" class="player-card as">
             <div class="player-name">vftrw</div>
             <div class="region-badge as">AS</div>
-          </a>
+      </a>
           <a href="https://discord.com/users/1293002114078871675" class="player-card na">
             <div class="player-name">xckts</div>
             <div class="region-badge na">NA</div>
-          </a>
+      </a>
 	</div>
-      </div>
+  </div>
       
       <!-- B Tier -->
       <div class="tier-column">
@@ -892,11 +897,11 @@
       <div class="tier-column">
         <div class="tier-label e">E</div>
         <div class="tier-players">
-          <div class="empty-tier-message">No players in this tier yet</div>
+        <div class="empty-tier-message">No players in this tier yet</div>
         </div>
       </div>
-    </div>
   </div>
+      </div>
 
   <footer>
     <p>© 2025 Bedrock Tier Testing | Last Updated: April 2025 | Made with love by qou2</p>
