@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="favi.png" rel="icon" type="image/png" /><meta charset="utf-8" />
+<title>Bedrock Tier Testing</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bedrock Tier Testing</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-bg: #0f1318;
+      --secondary-bg: #161b22;
+      --card-bg: rgba(30, 36, 46, 0.6);
+      --text-color: #e6edf3;
+      --accent-color: #6e5bdf;
+      --discord-color: #5464CA;
+     }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--primary-bg);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(132, 31, 169, 0.1), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(132, 31, 245, 0.1), transparent 40%);
+      color: var(--text-color);
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background-color: var(--secondary-bg);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(110, 91, 223, 0.2);
+    }
+    .header-content {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+    .header-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      text-align: center;
+    }
+    .header-center img {
+      max-height: 75px;
+      display: block;
+    }
+    .logo {
+      margin-right: 15px;
+      font-size: 28px;
+      color: var(--accent-color);
+      filter: drop-shadow(0 0 8px rgba(110, 91, 223, 0.4));
+    }
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      flex: 1;
+      background: linear-gradient(to right, #6e5bdf, #42b883);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .header-buttons {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    .discord-button {
+      background: linear-gradient(135deg, #806AD6 , #5464CA);
+      padding: 10px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .discord-button::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.6s;
+    }
+    
+    .discord-button:hover::after {
+      left: 100%;
+    }
+    
+    .discord-button i {
+      margin-right: 8px;
+      font-size: 20px;
+    }
+    
+    .discord-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(88, 101, 242, 0.6);
+    }
+    
+    .container {
+      padding: 40px 20px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .site-description {
+      max-width: 600px;
+      margin: 20px auto 30px;
+      text-align: center;
+      line-height: 1.6;
+      color: var(--text-color);
+      font-size: 18px;
+      opacity: 0.9;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    
+    .primary-btn {
+      background: linear-gradient(135deg, var(--accent-color), #4752C4);
+      padding: 12px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(110, 91, 223, 0.4);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .primary-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.6s;
+    }
+    
+    .primary-btn:hover::after {
+      left: 100%;
+    }
+    
+    .primary-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(110, 91, 223, 0.6);
+    }
+    
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+    }
+    
+    .stat-box {
+      background-color: var(--card-bg);
+      backdrop-filter: blur(5px);
+      padding: 25px 35px;
+      border-radius: 12px;
+      min-width: 150px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s;
+    }
+    
+    .stat-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    }
+    
+    .stat-number {
+      font-size: 36px;
+      font-weight: bold;
+      color: var(--accent-color);
+      margin-bottom: 8px;
+      text-shadow: 0 2px 8px rgba(110, 91, 223, 0.5);
+    }
+    
+    .stat-label {
+      font-size: 16px;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+    
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 35px;
+      text-align: center;
+      position: relative;
+      color: var(--text-color);
+      font-weight: bold;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-color), #42b883);
+      margin: 12px auto;
+      border-radius: 3px;
+    }
+    
+    .gamemodes {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 1200px;
+      margin-bottom: 50px;
+    }
+    
+    .gamemode-btn {
+      background-color: var(--card-bg);
+      backdrop-filter: blur(5px);
+      padding: 30px 20px;
+      border-radius: 15px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 20px;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      width: 180px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .gamemode-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(33deg, #6E5BDF 33%, #5D08FB 100%);
+    }
+    
+    .gamemode-btn i {
+      font-size: 34px;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+      filter: drop-shadow(0 2px 5px rgba(110, 91, 223, 0.5));
+      transition: all 0.3s;
+    }
+    
+    .gamemode-btn:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+    
+    .gamemode-btn:hover i {
+      transform: scale(1.1);
+      color: #42b883;
+    }
+    
+    .gamemode-tooltip {
+      position: absolute;
+      bottom: -80px;
+      left: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.8);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.3s;
+      opacity: 0;
+      pointer-events: none;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    .gamemode-btn:hover .gamemode-tooltip {
+      bottom: -60px;
+      opacity: 1;
+    }
+    
+    .news-section {
+      margin-top: 30px;
+      width: 100%;
+      max-width: 800px;
+    }
+    
+    .news-card {
+      background-color: var(--card-bg);
+      backdrop-filter: blur(5px);
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s;
+    }
+    
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    }
+    
+    .news-date {
+      color: var(--text-color);
+      opacity: 0.7;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    .news-title {
+      margin: 0 0 15px;
+      color: var(--accent-color);
+      font-size: 22px;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 30px;
+      background-color: var(--secondary-bg);
+      margin-top: auto;
+      font-size: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    }
+    
+    .game-mode-nav {
+      background-color: var(--secondary-bg);
+      padding: 15px;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: thin;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    
+    .game-mode-nav a {
+      padding: 12px 24px;
+      margin: 0 10px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 16px;
+      transition: all 0.3s;
+      border-radius: 30px;
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+    }
+    
+    .game-mode-nav a i {
+      margin-right: 8px;
+      font-size: 18px;
+    }
+    
+    .game-mode-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 70%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-color), var(--c-tier));
+      transition: transform 0.3s;
+      border-radius: 3px;
+    }
+    
+    .game-mode-nav a:hover::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+    
+    .game-mode-nav a:hover {
+      color: white;
+    }
+    
+    .game-mode-nav a.active {
+      background: linear-gradient(135deg, var(--accent-color), rgba(110, 91, 223, 0.7));
+      box-shadow: 0 5px 15px rgba(110, 91, 223, 0.3);
+      transform: translateY(-3px);
+    }
+    
+    .game-mode-nav a.active::after {
+      transform: translateX(-50%) scaleX(0);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .stat-box {
+      animation: fadeIn 0.5s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .stat-box:nth-child(1) { animation-delay: 0.1s; }
+    .stat-box:nth-child(2) { animation-delay: 0.2s; }
+    .stat-box:nth-child(3) { animation-delay: 0.3s; }
+    
+    .gamemode-btn {
+      animation: fadeIn 0.5s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .gamemode-btn:nth-child(1) { animation-delay: 0.1s; }
+    .gamemode-btn:nth-child(2) { animation-delay: 0.2s; }
+    .gamemode-btn:nth-child(3) { animation-delay: 0.3s; }
+    .gamemode-btn:nth-child(4) { animation-delay: 0.4s; }
+    .gamemode-btn:nth-child(5) { animation-delay: 0.5s; }
+    .gamemode-btn:nth-child(6) { animation-delay: 0.6s; }
+    .gamemode-btn:nth-child(7) { animation-delay: 0.7s; }
+
+    @keyframes pulse {
+      0% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(110, 91, 223, 0.4)); }
+      50% { transform: scale(1.05); filter: drop-shadow(0 0 12px rgba(110, 91, 223, 0.7)); }
+      100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(110, 91, 223, 0.4)); }
+    }
+    
+    .logo i {
+      animation: pulse 3s infinite;
+    }
+    
+    .header-center img {
+      filter: drop-shadow(0 0 10px rgba(88, 101, 242, 0.4));
+      transition: all 0.3s ease;
+    }
+    
+    .header-center img:hover {
+      filter: drop-shadow(0 0 15px rgba(255, 165, 0, 0.8));
+      transform: scale(1.05);
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(22, 27, 34, 0.6);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-color);
+      border-radius: 10px;
+    }
+    
+   @media (max-width: 768px) {
+      header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px;
+      }
+      
+      .header-content {
+        flex: 0 0 auto;
+        justify-content: flex-start;
+      }
+      
+      .header-center {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        left: auto;
+        transform: none;
+        margin: 0;
+      }
+      
+      .header-center img {
+        max-height: 40px;
+      }
+      
+      .title {
+        font-size: 18px;
+      }
+      
+      .logo {
+        font-size: 20px;
+        margin-right: 10px;
+      }
+      
+      .header-buttons {
+        flex-direction: row;
+        width: 100%;
+        gap: 8px;
+        margin-top: 5px;
+      }
+      
+      .btn {
+        padding: 6px 12px;
+        font-size: 14px;
+        flex: 1;
+        justify-content: center;
+      }
+      
+      .tier-list {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .tier-column {
+        min-width: unset;
+        width: 100%;
+      }
+      
+      .game-mode-nav {
+        padding: 8px 5px;
+        margin-bottom: 20px;
+      }
+      
+      .game-mode-nav a {
+        padding: 8px 12px;
+        font-size: 14px;
+        margin: 0 5px;
+      }
+    }
+  .theme-toggle {
+    margin-right: auto;
+    padding-left: 20px;
+  }
+  
+  .theme-toggle-btn {
+    background: linear-gradient(135deg, var(--accent-color), #4752C4);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(110, 91, 223, 0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .theme-toggle-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(110, 91, 223, 0.6);
+  }
+  
+  .theme-toggle-btn i {
+    font-size: 18px;
+    transition: transform 0.5s ease;
+  }
+  
+  .theme-toggle-btn:hover i {
+    transform: rotate(30deg);
+  }
+  
+  /* Light theme variables (will be toggled via JavaScript) */
+  body.light-theme {
+    --primary-bg: #f5f7fa;
+    --secondary-bg: #ffffff;
+    --card-bg: rgba(240, 242, 245, 0.8);
+    --text-color: #333333;
+  }
+  
+  .cheater-btn {
+  background: linear-gradient(135deg, #FF4F4F, #FF9090);
+  box-shadow: 0 4px 15px rgba(255, 79, 79, 0.4);
+}
+
+.cheater-btn::after {
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.cheater-btn:hover {
+  box-shadow: 0 6px 20px rgba(255, 79, 79, 0.6);
+}
+
+  </style>
+</head>
+<body>
+
+    <header>
+    <div class="header-content">
+      <div class="theme-toggle">
+        <button id="theme-toggle-btn" class="theme-toggle-btn">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+      <div class="header-center">
+        <a href="index.html">
+          <img src="bttt.png" alt="Bedrock Tier Testing Logo">
+        </a>
+      </div>    
+    </div>
+    <div class="header-buttons">
+      <a class="discord-button" href="https://discord.gg/yuMzU7485w" target="_blank">
+        <i class="fab fa-discord"></i> Join Discord
+      </a>
+    </div>
+  </header>
+
+  <div class="game-mode-nav">
+    <a href="skywars.html">
+      <i class="fas fa-cloud"></i> Skywars
+    </a>
+    <a href="midfight.html">
+      <i class="fas fa-fist-raised"></i> Midfight
+    </a>
+    <a href="bridge.html">
+      <i class="fas fa-archway"></i> Bridge
+    </a>
+    <a href="sumo.html">
+      <i class="fas fa-circle"></i> Sumo
+    </a>
+    <a href="nodebuff.html">
+      <i class="fas fa-shield-alt"></i> NoDebuff
+    </a>
+    <a href="builduhc.html">
+      <i class="fas fa-hammer"></i> BuildUHC
+    </a>
+	<a href="bedfight.html">
+      <i class="fas fa-bed"></i> Bedfight
+    </a>
+    <a href="cheaterlist.html">
+      <i class="fas fa-ban"></i> Cheater List
+    </a>
+  </div>
+
+  <div class="container">
+    <p class="site-description">
+      Welcome to Bedrock Tier Testing, the number one testing platform for Bedrock players. We test all platforms in 6 different gamemodes.
+    </p>
+    
+<div class="cta-buttons">
+  <a href="how-it-works.html" class="primary-btn">Get Started</a>
+  <a href="cheaterlist.html" class="primary-btn cheater-btn">Cheater List</a>
+</div>
+
+    
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-number">200</div>
+        <div class="stat-label">Active Members</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">351</div>
+        <div class="stat-label">Tests Completed</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">7</div>
+        <div class="stat-label">Game Modes</div>
+      </div>
+    </div>
+    
+    <h2 class="section-title">Game Modes</h2>
+    <div class="gamemodes">
+      <a class="gamemode-btn" href="skywars.html">
+        <i class="fas fa-cloud"></i>
+        Skywars
+      <a class="gamemode-btn" href="midfight.html">
+        <i class="fas fa-fist-raised"></i>
+        Midfight
+      <a class="gamemode-btn" href="bridge.html">
+        <i class="fas fa-archway"></i>
+        Bridge
+      <a class="gamemode-btn" href="sumo.html">
+        <i class="fas fa-circle"></i>
+        Sumo
+      <a class="gamemode-btn" href="nodebuff.html">
+        <i class="fas fa-shield-alt"></i>
+        NoDebuff
+      <a class="gamemode-btn" href="builduhc.html">
+        <i class="fas fa-hammer"></i>
+        BuildUHC
+	   <a class="gamemode-btn" href="bedfight.html">
+        <i class="fas fa-bed"></i>
+        Bedfight
+
+      </a>
+    </div>
+    
+    <div class="news-section">
+      <h2 class="section-title">Latest News</h2>
+      <div class="news-card">
+        <div class="news-date">April 27, 2025</div>
+        <h3 class="news-title">Website Release</h3>
+        <p>Website has officially released! Check out our tier lists for all game modes and join our Discord community.</p>
+      </div>
+    </div>
+  </div>
+
+<footer>
+    <p>© 2025 Bedrock Tier Testing | Protected by Australian Copyright Act 1968 | Made with <i class="fas fa-heart" style="color: var(--accent-color);"></i> by qou2 | <a href="tos.html" style="color: var(--accent-color); text-decoration: none;"><i class="fas fa-file-contract"></i> Terms of Service</a> | <a href="privacy.html" style="color: var(--accent-color); text-decoration: none;"><i class="fas fa-user-shield"></i> Privacy Policy</a></p>
+  </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentLocation = window.location.pathname;
+      const navLinks = document.querySelectorAll('.game-mode-nav a');
+      
+      navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (currentLocation.includes(linkPath) || (currentLocation === '/' && linkPath === 'index.html')) {
+          link.classList.add('active');
+        }
+      });
+      
+      const themeToggle = document.getElementById('theme-toggle-btn');
+      const themeIcon = themeToggle.querySelector('i');
+      
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+      }
+      
+      themeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('light-theme');
+        
+        if (document.body.classList.contains('light-theme')) {
+          themeIcon.classList.replace('fa-moon', 'fa-sun');
+          localStorage.setItem('theme', 'light');
+        } else {
+          themeIcon.classList.replace('fa-sun', 'fa-moon');
+          localStorage.setItem('theme', 'dark');
+        }
+        
+        themeIcon.classList.add('rotate');
+        setTimeout(() => {
+          themeIcon.classList.remove('rotate');
+        }, 500);
+      });
+      
+      const statNumbers = document.querySelectorAll('.stat-number');
+      statNumbers.forEach(counter => {
+        const finalValue = parseInt(counter.textContent, 10);
+        counter.textContent = "0";
+        
+        function animateValue(start, end, duration) {
+          let startTimestamp = null;
+          const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            
+            const currentValue = Math.floor(start + easeProgress * (end - start));
+            counter.textContent = currentValue;
+            
+            if (progress < 1) {
+              window.requestAnimationFrame(step);
+            }
+          };
+          window.requestAnimationFrame(step);
+        }
+        
+        setTimeout(() => {
+          animateValue(0, finalValue, 2000);
+        }, 300);
+      });
+    });
+  </script>
+</body>
+</html>

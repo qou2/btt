@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="favi.png" rel="icon" type="image/png" /><meta charset="utf-8" />
+<title>Privacy Policy - Bedrock Tier Testing</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-bg: #0f1318;
+      --secondary-bg: #161b22;
+      --card-bg: rgba(30, 36, 46, 0.6);
+      --text-color: #e6edf3;
+      --accent-color: #6e5bdf;
+      --discord-color: #5865F2;
+      
+      --s-tier: #11806a;
+      --a-tier: #1f8b4c;
+      --b-tier: #206694;
+      --c-tier: #71368a;
+      --d-tier: #ad1457;
+      --e-tier: #992d22;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background-color: var(--primary-bg);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(110, 91, 223, 0.1), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(66, 184, 131, 0.1), transparent 40%);
+      color: var(--text-color);
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    header {
+      background-color: var(--secondary-bg);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(110, 91, 223, 0.2);
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+    .header-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      text-align: center;
+    }
+    
+    .header-center img {
+      max-height: 75px;
+      display: block;
+    }
+    
+    .logo {
+      margin-right: 15px;
+      font-size: 28px;
+      color: var(--accent-color);
+      filter: drop-shadow(0 0 8px rgba(110, 91, 223, 0.4));
+    }
+    
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      flex: 1;
+      background: linear-gradient(to right, #6e5bdf, #42b883);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .header-buttons {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    
+    .discord-button {
+      background: linear-gradient(135deg, var(--discord-color), #4752C4);
+      padding: 10px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .discord-button::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.6s;
+    }
+    
+    .discord-button:hover::after {
+      left: 100%;
+    }
+    
+    .discord-button i {
+      margin-right: 8px;
+      font-size: 20px;
+    }
+    
+    .discord-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(88, 101, 242, 0.6);
+    }
+    
+    .container {
+      padding: 40px 20px 60px;
+      max-width: 900px;
+      margin: 0 auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .privacy-content {
+      background-color: var(--card-bg);
+      backdrop-filter: blur(5px);
+      padding: 35px;
+      border-radius: 15px;
+      width: 100%;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      line-height: 1.6;
+    }
+    
+    .privacy-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .privacy-title {
+      font-size: 32px;
+      color: var(--accent-color);
+      margin-bottom: 10px;
+      background: linear-gradient(to right, #6e5bdf, #42b883);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .privacy-date {
+      color: var(--text-color);
+      opacity: 0.7;
+      font-size: 14px;
+    }
+    
+    .privacy-section {
+      margin-bottom: 30px;
+    }
+    
+    .privacy-section-title {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+    }
+    
+    .privacy-subsection {
+      margin-bottom: 20px;
+    }
+    
+    .privacy-subsection-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: var(--text-color);
+    }
+    
+    .privacy-list {
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+    
+    .privacy-list li {
+      margin-bottom: 8px;
+    }
+    
+    .game-mode-nav {
+      background-color: var(--secondary-bg);
+      padding: 15px;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: thin;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    
+    .game-mode-nav a {
+      padding: 12px 24px;
+      margin: 0 10px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 16px;
+      transition: all 0.3s;
+      border-radius: 30px;
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+    }
+    
+    .game-mode-nav a i {
+      margin-right: 8px;
+      font-size: 18px;
+    }
+    
+    .game-mode-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 70%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-color), var(--c-tier));
+      transition: transform 0.3s;
+      border-radius: 3px;
+    }
+    
+    .game-mode-nav a:hover::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+    
+    .game-mode-nav a:hover {
+      color: white;
+    }
+    
+    .game-mode-nav a.active {
+      background: linear-gradient(135deg, var(--accent-color), rgba(110, 91, 223, 0.7));
+      box-shadow: 0 5px 15px rgba(110, 91, 223, 0.3);
+      transform: translateY(-3px);
+    }
+    
+    .game-mode-nav a.active::after {
+      transform: translateX(-50%) scaleX(0);
+    }
+    
+    footer {
+      text-align: center;
+      padding: 30px;
+      background-color: var(--secondary-bg);
+      margin-top: auto;
+      font-size: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(22, 27, 34, 0.6);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-color);
+      border-radius: 10px;
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px;
+      }
+      
+      .header-content {
+        flex: 0 0 auto;
+        justify-content: flex-start;
+      }
+      
+      .header-center {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        left: auto;
+        transform: none;
+        margin: 0;
+      }
+      
+      .header-center img {
+        max-height: 40px;
+      }
+      
+      .title {
+        font-size: 18px;
+      }
+      
+      .logo {
+        font-size: 20px;
+        margin-right: 10px;
+      }
+      
+      .header-buttons {
+        flex-direction: row;
+        width: 100%;
+        gap: 8px;
+        margin-top: 5px;
+      }
+      
+      .privacy-content {
+        padding: 20px;
+      }
+      
+      .privacy-title {
+        font-size: 24px;
+      }
+      
+      .privacy-section-title {
+        font-size: 20px;
+      }
+      
+      .game-mode-nav {
+        padding: 8px 5px;
+        margin-bottom: 20px;
+      }
+      
+      .game-mode-nav a {
+        padding: 8px 12px;
+        font-size: 14px;
+        margin: 0 5px;
+      }
+    }
+    
+    .theme-toggle {
+      margin-right: auto;
+      padding-left: 20px;
+    }
+    
+    .theme-toggle-btn {
+      background: linear-gradient(135deg, var(--accent-color), #4752C4);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(110, 91, 223, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .theme-toggle-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(110, 91, 223, 0.6);
+    }
+    
+    .theme-toggle-btn i {
+      font-size: 18px;
+      transition: transform 0.5s ease;
+    }
+    
+    .theme-toggle-btn:hover i {
+      transform: rotate(30deg);
+    }
+    
+    /* Light theme variables */
+    body.light-theme {
+      --primary-bg: #f5f7fa;
+      --secondary-bg: #ffffff;
+      --card-bg: rgba(240, 242, 245, 0.8);
+      --text-color: #333333;
+    }
+    
+    /* Animation for page load */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .privacy-content {
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, var(--accent-color), #4752C4);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(110, 91, 223, 0.4);
+      transition: all 0.3s;
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(110, 91, 223, 0.6);
+    }
+    
+    .back-to-top i {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <div class="theme-toggle">
+        <button id="theme-toggle-btn" class="theme-toggle-btn">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+      <div class="header-center">
+        <a href="index.html">
+          <img src="bttt.png" alt="Bedrock Tier Testing Logo">
+        </a>
+      </div>    
+    </div>
+    <div class="header-buttons">
+      <a class="discord-button" href="https://discord.gg/yuMzU7485w" target="_blank">
+        <i class="fab fa-discord"></i> Join Discord
+      </a>
+    </div>
+  </header>
+
+  <div class="game-mode-nav">
+    <a href="index.html">
+      <i class="fas fa-home"></i> Home
+    </a>
+    <a href="skywars.html">
+      <i class="fas fa-cloud"></i> Skywars
+    </a>
+    <a href="midfight.html">
+      <i class="fas fa-fist-raised"></i> Midfight
+    </a>
+    <a href="bridge.html">
+      <i class="fas fa-archway"></i> Bridge
+    </a>
+    <a href="sumo.html">
+      <i class="fas fa-circle"></i> Sumo
+    </a>
+    <a href="nodebuff.html">
+      <i class="fas fa-shield-alt"></i> NoDebuff
+    </a>
+    <a href="builduhc.html">
+      <i class="fas fa-hammer"></i> BuildUHC
+    </a>
+  </div>
+
+  <div class="container">
+    <div class="privacy-content">
+      <div class="privacy-header">
+        <h1 class="privacy-title">Privacy Policy</h1>
+        <p class="privacy-date">Last Updated: May 2, 2025</p>
+      </div>
+
+      <div class="privacy-section">
+        <h2 class="privacy-section-title">Introduction</h2>
+        <p>This Privacy Policy explains how the Bedrock Tier Testing Bot ("we", "our", or "Bot") collects, uses, and stores information when you use our Discord bot service. We take your privacy seriously and are committed to protecting your personal information.</p>
+      </div>
+
+      <div class="privacy-section">
+        <h2 class="privacy-section-title">Information We Collect</h2>
+        
+        <div class="privacy-subsection">
+          <h3 class="privacy-subsection-title">1. User Data</h3>
+          <ul class="privacy-list">
+            <li>Discord User ID: We collect and store Discord user IDs to identify users for moderation purposes.</li>
+            <li>Discord Username and Tag: We store usernames and tags in relation to moderation actions.</li>
+            <li>Server Member Information: Basic information about server members interacting with tickets or subject to moderation actions.</li>
+          </ul>
+        </div>
+        
+        <div class="privacy-subsection">
+          <h3 class="privacy-subsection-title">2. Moderation Data</h3>
+          <p>Moderation Actions: We record moderation activities (warnings, mutes, kicks, bans) including:</p>
+          <ul class="privacy-list">
+            <li>Type of action taken</li>
+            <li>Moderator who performed the action</li>
+            <li>Reason for the action</li>
+            <li>Timestamp of the action</li>
+            <li>Duration (for temporary actions like mutes)</li>
+          </ul>
+        </div>
+        
+        <div class="privacy-subsection">
+          <h3 class="privacy-subsection-title">3. Ticket Information</h3>
+          <p>Ticket Content: Information provided within support tickets, including:</p>
+          <ul class="privacy-list">
+            <li>Minecraft Username</li>
+            <li>Platform information</li>
+            <li>Region</li>
+            <li>Preferred testing gamemode</li>
+            <li>Any additional information provided in tickets</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="privacy-section">
+        <h2 class="privacy-section-title">How We Use Information</h2>
+        
+        <div class="privacy-subsection">
+          <h3 class="privacy-subsection-title">1. Bot Functionality</h3>
+          <p>We use collected information to:</p>
+          <ul class="privacy-list">
+            <li>Properly assign and manage support tickets</li>
+            <li>Enforce server rules through moderation features</li>
+            <li>Maintain records of moderation actions for accountability</li>
+          </ul>
+        </div>
+        
+        <div class="privacy-subsection">
+          <h3 class="privacy-subsection-title">2. Moderation Records</h3>
+          <p>Moderation data is used to:</p>
+          <ul class="privacy-list">
+            <li>Track user behavior patterns</li>
+            <li>Enable moderators to make informed decisions</li>
+            <li>Maintain a record of administrative actions for transparency</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="privacy-section">
+        <h2 class="privacy-section-title">Data Storage and Security</h2>
+        
+        <div class="privacy-subsection">
+          <h3 class="privacy-subsection-title">1. Data Storage</h3>
+          <ul class="privacy-list">
+            <li>Moderation logs are stored in a JSON file on the host server</li>
+            <li>Data is regularly saved and backed up to prevent loss</li>
+          </ul>
+        </div>
+        
+        <div class="privacy-subsection">
+          <h3 class="privacy-subsection-title">2. Data Retention</h3>
+          <ul class="privacy-list">
+            <li>Moderation records are kept for the duration of the bot's implementation in your server</li>
+            <li>No automatic data deletion is implemented; server administrators can manually delete the data file if needed</li>
+          </ul>
+        </div>
+        
+        <div class="privacy-subsection">
+          <h3 class="privacy-subsection-title">3. Data Security</h3>
+          <ul class="privacy-list">
+            <li>We implement reasonable security measures to protect stored data</li>
+            <li>Access to the host server is restricted to authorized administrators only</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="privacy-section">
+        <h2 class="privacy-section-title">Data Sharing</h2>
+        
+        <div class="privacy-subsection">
+          <h3 class="privacy-subsection-title">1. Third Parties</h3>
+          <ul class="privacy-list">
+            <li>We do not sell or share your data with third parties</li>
+            <li>Your information remains within the Discord server where the bot is installed</li>
+          </ul>
+        </div>
+        
+        <div class="privacy-subsection">
+          <h3 class="privacy-subsection-title">2. Disclosure Requirements</h3>
+          <ul class="privacy-list">
+            <li>We may disclose information if required to comply with a legal obligation</li>
+            <li>Information may be shared if necessary to protect the rights, property, or safety of users, the public, or our service</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="privacy-section">
+        <h2 class="privacy-section-title">User Rights</h2>
+        
+        <div class="privacy-subsection">
+          <h3 class="privacy-subsection-title">1. Access Rights</h3>
+          <ul class="privacy-list">
+            <li>Users can view their own moderation history using the bot's /modlogs command</li>
+            <li>Server administrators can access all stored data directly on the host server</li>
+          </ul>
+        </div>
+        
+        <div class="privacy-subsection">
+          <h3 class="privacy-subsection-title">2. Deletion Requests</h3>
+          <ul class="privacy-list">
+            <li>To request deletion of your personal data, please contact the server administrators</li>
+            <li>Note that certain information may need to be retained for legitimate moderation purposes</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="privacy-section">
+        <h2 class="privacy-section-title">Children's Privacy</h2>
+        <p>Our service is not directed to children under 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us.</p>
+      </div>
+
+      <div class="privacy-section">
+        <h2 class="privacy-section-title">Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time. We will notify users of any changes by posting the new Privacy Policy in the server's information channels. Your continued use of the bot after changes indicates your acceptance of the revised Privacy Policy.</p>
+      </div>
+
+      <div class="privacy-section">
+        <h2 class="privacy-section-title">Contact Information</h2>
+        <p>For questions about this Privacy Policy, please contact the server administrators or moderators.</p>
+        <p>Or directly email <a href="mailto:vajkthevajk@gmail.com" style="color: var(--accent-color);">vajkthevajk@gmail.com</a></p>
+      </div>
+    </div>
+  </div>
+
+  <a href="#" class="back-to-top" id="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <footer>
+    <p>© 2025 Bedrock Tier Testing | Last Updated: May 2025 | Made with love by qou2</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Theme toggle functionality
+      const themeToggle = document.getElementById('theme-toggle-btn');
+      const themeIcon = themeToggle.querySelector('i');
+      
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+      }
+      
+      themeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('light-theme');
+        
+        if (document.body.classList.contains('light-theme')) {
+          themeIcon.classList.replace('fa-moon', 'fa-sun');
+          localStorage.setItem('theme', 'light');
+        } else {
+          themeIcon.classList.replace('fa-sun', 'fa-moon');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+      
+      // Back to top button functionality
+      const backToTopButton = document.getElementById('back-to-top');
+      
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.add('visible');
+        } else {
+          backToTopButton.classList.remove('visible');
+        }
+      });
+      
+      backToTopButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>

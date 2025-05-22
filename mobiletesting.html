@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skywars Tier List</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-bg: #0f1318;
+      --secondary-bg: #161b22;
+      --card-bg: rgba(30, 36, 46, 0.6);
+      --text-color: #e6edf3;
+      --accent-color: #6e5bdf;
+      --discord-color: #5865F2;
+      
+      --s-tier: #11806a;
+      --a-tier: #1f8b4c;
+      --b-tier: #206694;
+      --c-tier: #71368a;
+      --d-tier: #ad1457;
+      --e-tier: #992d22;
+      
+      --na-color: #3498db;
+      --eu-color: #2ecc71;
+      --as-color: #e74c3c;
+      --tester-color: #fff491;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background-color: var(--primary-bg);
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(110, 91, 223, 0.07), transparent 30%),
+        radial-gradient(circle at 75% 75%, rgba(66, 184, 131, 0.07), transparent 30%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236e5bdf' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      color: var(--text-color);
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+        
+    header {
+      background-color: rgba(21, 24, 32, 0.85);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(110, 91, 223, 0.2);
+    }
+     
+    .header-content {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+    
+    .logo {
+      margin-right: 15px;
+      font-size: 28px;
+      color: var(--accent-color);
+      filter: drop-shadow(0 0 8px rgba(110, 91, 223, 0.4));
+    }
+    
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      background: linear-gradient(to right, #6e5bdf, #42b883);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .header-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      text-align: center;
+    }
+    
+    .header-center img {
+      max-height: 150px;
+      display: block;
+    }
+    
+    .header-buttons {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    
+    .btn {
+      padding: 10px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .btn i {
+      margin-right: 8px;
+    }
+    
+    .back-button {
+      background-color: transparent;
+      border: 2px solid var(--accent-color);
+      color: var(--text-color);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .back-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(110, 91, 223, 0.2), transparent);
+      transition: left 0.7s;
+      z-index: -1;
+    }
+    
+    .back-button:hover::before {
+      left: 100%;
+    }
+    
+    .back-button:hover {
+      transform: translateX(-5px);
+      box-shadow: 0 0 15px rgba(110, 91, 223, 0.5);
+    }
+    
+    .discord-button {
+      background: linear-gradient(135deg, var(--discord-color), #4752C4);
+      color: white;
+      box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .discord-button::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.6s;
+    }
+    
+    .discord-button:hover::after {
+      left: 100%;
+    }
+    
+    .discord-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(88, 101, 242, 0.6);
+    }
+    
+    .search-container {
+      margin: 30px auto;
+      max-width: 600px;
+      display: flex;
+      gap: 10px;
+      position: relative;
+    }
+    
+    .search-container input {
+      flex: 1;
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: 2px solid rgba(110, 91, 223, 0.2);
+      background-color: rgba(22, 27, 34, 0.7);
+      color: white;
+      font-size: 16px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      backdrop-filter: blur(5px);
+    }
+    
+    .search-container input:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 4px rgba(110, 91, 223, 0.2);
+    }
+    
+    .search-container::before {
+      content: '\f002';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent-color);
+      opacity: 0.7;
+    }
+    
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      padding: 0 20px;
+    }
+    
+    .filter-button {
+      padding: 8px 20px;
+      background-color: rgba(22, 27, 34, 0.7);
+      border: none;
+      border-radius: 30px;
+      color: var(--text-color);
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .filter-button::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      bottom: 0;
+      left: 0;
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s;
+    }
+    
+    .filter-button.na::after {
+      background-color: var(--na-color);
+    }
+    
+    .filter-button.eu::after {
+      background-color: var(--eu-color);
+    }
+    
+    .filter-button.as::after {
+      background-color: var(--as-color);
+    }
+    
+    .filter-button:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+    
+    .filter-button.active {
+      background-color: var(--accent-color);
+      box-shadow: 0 4px 15px rgba(110, 91, 223, 0.4);
+    }
+    
+    .game-mode-nav {
+      background-color: var(--secondary-bg);
+      padding: 15px;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: thin;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .game-mode-nav a {
+      padding: 12px 24px;
+      margin: 0 10px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 16px;
+      transition: all 0.3s;
+      border-radius: 30px;
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+    }
+    
+    .game-mode-nav a i {
+      margin-right: 8px;
+      font-size: 18px;
+    }
+    
+    .game-mode-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 70%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-color), var(--c-tier));
+      transition: transform 0.3s;
+      border-radius: 3px;
+    }
+    
+    .game-mode-nav a:hover::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+    
+    .game-mode-nav a:hover {
+      color: white;
+    }
+    
+    .game-mode-nav a.active {
+      background: linear-gradient(135deg, var(--accent-color), rgba(110, 91, 223, 0.7));
+      box-shadow: 0 5px 15px rgba(110, 91, 223, 0.3);
+      transform: translateY(-3px);
+    }
+    
+    .game-mode-nav a.active::after {
+      transform: translateX(-50%) scaleX(0);
+    }
+    
+    .container {
+      padding: 0 20px 60px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+    
+    .tier-list {
+      display: flex;
+      gap: 20px;
+      padding-bottom: 20px;
+      justify-content: center;
+    }
+    
+    .tier-column {
+      min-width: 240px;
+      width: 100%;
+      max-width: 300px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s;
+      animation: fadeIn 0.5s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .tier-column:hover {
+      transform: translateY(-5px);
+    }
+    
+    .tier-column:nth-child(1) { animation-delay: 0.1s; }
+    .tier-column:nth-child(2) { animation-delay: 0.2s; }
+    .tier-column:nth-child(3) { animation-delay: 0.3s; }
+    .tier-column:nth-child(4) { animation-delay: 0.4s; }
+    .tier-column:nth-child(5) { animation-delay: 0.5s; }
+	.tier-column:nth-child(6) { animation-delay: 0.6s; }
+    
+    
+    .tier-label {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      font-weight: bold;
+      border-radius: 15px 15px 0 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .tier-label::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.2), transparent 70%);
+      top: -50%;
+      left: -50%;
+      transition: all 0.5s;
+    }
+    
+    .tier-column:hover .tier-label::before {
+      top: -30%;
+      left: -30%;
+    }
+    
+    .tier-label.s { background: linear-gradient(135deg, var(--s-tier), #e74c3c); }
+    .tier-label.a { background: linear-gradient(135deg, var(--a-tier), #e67e22); }
+    .tier-label.b { background: linear-gradient(135deg, var(--b-tier), #f1c40f); }
+    .tier-label.c { background: linear-gradient(135deg, var(--c-tier), #27ae60); }
+    .tier-label.d { background: linear-gradient(135deg, var(--d-tier), #3498db); }
+    .tier-label.e { background: linear-gradient(135deg, var(--e-tier), #8e44ad); }
+    
+    .tier-players {
+      flex: 1;
+      background-color: rgba(30, 36, 46, 0.7);
+      border-radius: 0 0 15px 15px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      min-height: 300px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .player-card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      position: relative;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: var(--text-color);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      align-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .player-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      z-index: 1;
+      transition: all 0.3s;
+    }
+    
+    .player-card.na::before { background: linear-gradient(to bottom, var(--na-color), rgba(52, 152, 219, 0.7)); }
+    .player-card.eu::before { background: linear-gradient(to bottom, var(--eu-color), rgba(46, 204, 113, 0.7)); }
+    .player-card.as::before { background: linear-gradient(to bottom, var(--as-color), rgba(231, 76, 60, 0.7)); }
+    
+    .player-card:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      z-index: 1;
+      background-color: rgba(40, 46, 56, 0.9);
+    }
+    
+    .player-card:hover::before {
+      width: 8px;
+    }
+    
+    .player-name {
+      font-size: 17px;
+      font-weight: 600;
+      white-space: nowrap;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      letter-spacing: 0.5px;
+    }
+    
+    .player-card:hover .player-name {
+      animation: float 2s ease-in-out infinite;
+    }
+    
+    .number-one-badge {
+      background: linear-gradient(135deg, #ffda6a, #ffae00);
+      color: #000;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-left: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(255, 218, 106, 0.4);
+      position: relative;
+    }
+    
+    .number-one-badge::after {
+      content: '★';
+      position: absolute;
+      font-size: 10px;
+      right: -5px;
+      top: -5px;
+      color: #ffff00;
+      text-shadow: 0 0 5px gold;
+      animation: sparkle 2s infinite;
+    }
+    
+    /* New Tester Badge Styles */
+    .tester-badge {
+      background: linear-gradient(135deg, var(--tester-color), #fff491);
+      color: black;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-left: 5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(255, 230, 0, 0.4);
+      position: relative;
+    }
+    
+    .tester-badge::after {
+      content: '🔨 ';
+      position: absolute;
+      font-size: 10px;
+      right: -5px;
+      top: -5px;
+      color: #fff;
+      text-shadow: 0 0 5px yellow;
+      animation: sparkle 2s infinite;
+    }
+    
+    .region-badge {
+      position: absolute;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      right: -100px;
+      transition: right 0.3s ease;
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    .player-card:hover .region-badge {
+      right: 16px;
+    }
+    
+    .region-badge.na { background: linear-gradient(135deg, var(--na-color), #2980b9); }
+    .region-badge.eu { background: linear-gradient(135deg, var(--eu-color), #27ae60); }
+    .region-badge.as { background: linear-gradient(135deg, var(--as-color), #c0392b); }
+    
+    .empty-tier-message {
+      padding: 30px;
+      text-align: center;
+      font-style: italic;
+      color: rgba(230, 237, 243, 0.5);
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      border: 2px dashed rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 30px;
+      background-color: var(--secondary-bg);
+      margin-top: auto;
+      font-size: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(22, 27, 34, 0.6);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-color);
+      border-radius: 10px;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(110, 91, 223, 0.4)); }
+      50% { transform: scale(1.05); filter: drop-shadow(0 0 12px rgba(110, 91, 223, 0.7)); }
+      100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(110, 91, 223, 0.4)); }
+    }
+         .header-center img {
+      filter: drop-shadow(0 0 10px rgba(88, 101, 242, 0.4));
+      transition: all 0.3s ease;
+    }
+    
+    .header-center img:hover {
+      filter: drop-shadow(0 0 15px rgba(255, 165, 0, 0.8));
+      transform: scale(1.05);
+    }
+	
+    .logo i {
+      animation: pulse 3s infinite;
+    }
+    
+   @media (max-width: 768px) {
+      header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px;
+      }
+      
+      .header-content {
+        flex: 0 0 auto;
+        justify-content: flex-start;
+      }
+      
+      .header-center {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        left: auto;
+        transform: none;
+        margin: 0;
+      }
+      
+      .header-center img {
+        max-height: 40px;
+      }
+      
+      .title {
+        font-size: 18px;
+      }
+      
+      .logo {
+        font-size: 20px;
+        margin-right: 10px;
+      }
+      
+      .header-buttons {
+        flex-direction: row;
+        width: 100%;
+        gap: 8px;
+        margin-top: 5px;
+      }
+      
+      .btn {
+        padding: 6px 12px;
+        font-size: 14px;
+        flex: 1;
+        justify-content: center;
+      }
+      
+      .tier-list {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .tier-column {
+        min-width: unset;
+        width: 100%;
+      }
+      
+      .game-mode-nav {
+        padding: 8px 5px;
+        margin-bottom: 20px;
+      }
+      
+      .game-mode-nav a {
+        padding: 8px 12px;
+        font-size: 14px;
+        margin: 0 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <i class="fas fa-cloud"></i>
+      </div>
+      <div class="title">Skywars Tier List</div>
+    </div>
+        <div class="header-center">
+        <a href="index.html">
+          <img src="bttt.png" alt="Bedrock Tier Testing Logo">
+        </a>
+      </div> 
+    <div class="header-buttons">
+      <a class="btn back-button" href="index.html">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+      <a class="btn discord-button" href="https://discord.gg/yuMzU7485w" target="_blank">
+        <i class="fab fa-discord"></i> Join Discord
+      </a>
+    </div>
+  </header>
+
+  <div class="game-mode-nav">
+    <a href="skywars.html" class="active">
+      <i class="fas fa-cloud"></i> Skywars
+    </a>
+    <a href="midfight.html">
+      <i class="fas fa-fist-raised"></i> Midfight
+    </a>
+    <a href="bridge.html">
+      <i class="fas fa-archway"></i> Bridge
+    </a>
+    <a href="sumo.html">
+      <i class="fas fa-circle"></i> Sumo
+    </a>
+    <a href="nodebuff.html">
+      <i class="fas fa-shield-alt"></i> NoDebuff
+    </a>
+    <a href="builduhc.html">
+      <i class="fas fa-hammer"></i> BuildUHC
+    </a>
+  </div>
+  
+  <div class="search-container">
+    <input type="text" placeholder="Search for a player..." id="playerSearch">
+  </div>
+  
+  <div class="filter-buttons">
+    <button class="filter-button active" data-filter="all">All Regions</button>
+    <button class="filter-button na" data-filter="na">North America</button>
+    <button class="filter-button eu" data-filter="eu">Europe</button>
+    <button class="filter-button as" data-filter="as">Asia</button>
+  </div>
+
+  <div class="container">
+    <div class="tier-list">
+
+      <!-- S Tier -->
+      <div class="tier-column">
+        <div class="tier-label s">S</div>
+        <div class="tier-players">
+          <a href="https://discord.com/users/1355245770453946399" class="player-card na">
+            <div class="player-name">Morad<span class="number-one-badge">#1</span></div>
+            <div class="region-badge na">NA</div>
+          </a>
+          <a href="https://discord.com/users/1257267971387035649" class="player-card as">
+            <div class="player-name">ItzUnfipabolYT<span class="tester-badge">Tester</span></div>
+            <div class="region-badge as">AS</div>
+          </a>
+        </div>
+      </div>
+      
+      <!-- A Tier -->
+      <div class="tier-column">
+        <div class="tier-label a">A</div>
+        <div class="tier-players">
+          <a href="https://discord.com/users/510847369454026753" class="player-card as">
+            <div class="player-name">qou2<span class="tester-badge">Tester</span></div>
+            <div class="region-badge as">AS</div>
+          </a>
+          <a href="https://discord.com/users/1341247619628011561" class="player-card na">
+            <div class="player-name">xyzzzii</div>
+            <div class="region-badge na">NA</div>
+          </a>
+          <a href="https://discord.com/users/800738861290487838" class="player-card na">
+            <div class="player-name">zH1by<span class="tester-badge">Tester</span></div>
+            <div class="region-badge na">NA</div>
+          </a>
+          <a href="https://discord.com/users/1027468766596038677" class="player-card eu">
+            <div class="player-name">AbominationMC</div>
+            <div class="region-badge eu">EU</div>
+          </a>
+          <a href="https://discord.com/users/405485130111778817" class="player-card na">
+            <div class="player-name">WerLifes<span class="tester-badge">Tester</span></div>
+            <div class="region-badge na">NA</div>
+          </a>
+          <a href="https://discord.com/users/1364897561499930664" class="player-card na">
+            <div class="player-name">Dqrryn<span class="tester-badge">Tester</span></div>
+            <div class="region-badge na">NA</div>
+          </a>
+          <a href="https://discord.com/users/1306788722125045842" class="player-card na">
+            <div class="player-name">cybxrzyt</div>
+            <div class="region-badge na">NA</div>
+          </a>
+        </div>
+      </div>
+      
+      <!-- B Tier -->
+      <div class="tier-column">
+        <div class="tier-label b">B</div>
+        <div class="tier-players">
+	<a href="https://discord.com/users/1089232779910320288" class="player-card na">
+            <div class="player-name">craigmcyt</div>
+            <div class="region-badge na">NA</div>
+          </a>
+          <a href="https://discord.com/users/1139544219862695967" class="player-card eu">
+            <div class="player-name">EletricHayden</div>
+            <div class="region-badge eu">EU</div>
+          </a>
+          <a href="https://discord.com/users/1196831517276635260" class="player-card na">
+            <div class="player-name">FutureMX<span class="tester-badge">Tester</span></div>
+            <div class="region-badge na">NA</div>
+          </a>
+          <div class="player-card na">
+            <div class="player-name">CupHeadies</div>
+            <div class="region-badge na">NA</div>
+          </div>
+          <a href="https://discord.com/users/1228837831796064266" class="player-card eu">
+            <div class="player-name">HESU69</div>
+            <div class="region-badge eu">EU</div>
+          </a>
+          <a href="https://discord.com/users/1112782330642305087" class="player-card na">
+            <div class="player-name">SimpleGreen7673</div>
+            <div class="region-badge na">NA</div>
+          </a>
+          <a href="https://discord.com/users/1288947330417954879" class="player-card na">
+            <div class="player-name">voodl9<span class="tester-badge">Tester</span></div>
+            <div class="region-badge na">NA</div>
+          </a>
+          <a href="https://discord.com/users/763476615270891561" class="player-card eu">
+            <div class="player-name">FrashdYTz</div>
+            <div class="region-badge eu">EU</div>
+          </a>
+	<a href="https://discord.com/users/1339781809155604493" class="player-card na">
+            <div class="player-name">bu1ltdfrnt</div>
+            <div class="region-badge na">NA</div>
+          </a>
+        </div>
+      </div>
+      
+      <!-- C Tier -->
+      <div class="tier-column">
+        <div class="tier-label c">C</div>
+        <div class="tier-players">
+          <a href="https://discord.com/users/1322810863929004064" class="player-card as">
+            <div class="player-name">BestRapier07358</div>
+            <div class="region-badge as">AS</div>
+          </a>
+          <a href="https://discord.com/users/1227056207336968204" class="player-card na">
+            <div class="player-name">mqrzyt</div>
+            <div class="region-badge na">NA</div>
+          </a>
+          <a href="https://discord.com/users/1315163549252849677" class="player-card eu">
+            <div class="player-name">Sweat</div>
+            <div class="region-badge eu">EU</div>
+          </a>
+          <div class="player-card na">
+            <div class="player-name">2much.rackzz</div>
+            <div class="region-badge na">NA</div>
+          </div>
+          <a href="https://discord.com/users/1084759872245092423" class="player-card as">
+            <div class="player-name">Frosttsammyy</div>
+            <div class="region-badge as">AS</div>
+          </a>
+          <a href="https://discord.com/users/1356637033291976734" class="player-card eu">
+            <div class="player-name">SZ Zarqm</div>
+            <div class="region-badge eu">EU</div>
+          </a>
+        </div>
+      </div>
+      
+  <!-- D Tier -->
+      <div class="tier-column">
+        <div class="tier-label d">D</div>
+        <div class="tier-players">
+          <a href="https://discord.com/users/1363530881612124221" class="player-card eu">
+            <div class="player-name">zvolicx</div>
+            <div class="region-badge eu">EU</div>
+          </a>
+          <a href="https://discord.com/users/1334810572209913910" class="player-card as">
+            <div class="player-name">VoidYT25</div>
+            <div class="region-badge as">AS</div>
+          </a>
+          <a href="https://discord.com/users/1243486394916016238" class="player-card as">
+            <div class="player-name">X ITACHI X6865</div>
+            <div class="region-badge as">AS</div>
+          </a>
+          <a href="https://discord.com/users/1308843046586023959" class="player-card as">
+            <div class="player-name">NovaVibeYT</div>
+            <div class="region-badge as">AS</div>
+          </a>
+        </div>
+      </div>
+      
+      <!-- E Tier -->
+      <div class="tier-column">
+        <div class="tier-label e">E</div>
+        <div class="tier-players">
+          <div class="empty-tier-message">No players in this tier yet</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Bedrock Tier Testing | Last Updated: April 2025 | Made with love by qou2</p>
+  </footer>
+
+  <script>
+    document.getElementById('playerSearch').addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      const players = document.querySelectorAll('.player-card');
+      const tierColumns = document.querySelectorAll('.tier-column');
+      
+      players.forEach(player => {
+        const playerName = player.querySelector('.player-name').textContent.toLowerCase();
+        if (playerName.includes(searchTerm)) {
+          player.style.display = 'flex';
+        } else {
+          player.style.display = 'none';
+        }
+      });
+      
+      tierColumns.forEach(column => {
+        const visiblePlayers = column.querySelectorAll('.player-card[style="display: flex;"]');
+        const emptyMessage = column.querySelector('.empty-tier-message');
+        const tierPlayers = column.querySelector('.tier-players');
+        
+        if (visiblePlayers.length === 0 && !emptyMessage) {
+          const newEmptyMessage = document.createElement('div');
+          newEmptyMessage.className = 'empty-tier-message';
+          newEmptyMessage.textContent = 'No players match your search';
+          newEmptyMessage.style.display = 'block';
+          tierPlayers.appendChild(newEmptyMessage);
+        } 
+        else if (visiblePlayers.length > 0 && emptyMessage) {
+          emptyMessage.style.display = 'none';
+        }
+      });
+    });
+    
+    const filterButtons = document.querySelectorAll('.filter-button');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const filter = this.getAttribute('data-filter');
+        
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        
+        const players = document.querySelectorAll('.player-card');
+        players.forEach(player => {
+          if (filter === 'all') {
+            player.style.display = 'flex';
+          } else {
+            if (player.classList.contains(filter)) {
+              player.style.display = 'flex';
+            } else {
+              player.style.display = 'none';
+            }
+          }
+        });
+        
+        const tierColumns = document.querySelectorAll('.tier-column');
+        tierColumns.forEach(column => {
+          const visiblePlayers = Array.from(column.querySelectorAll('.player-card')).filter(p => p.style.display !== 'none');
+          const tierPlayers = column.querySelector('.tier-players');
+          const existingEmptyMessage = column.querySelector('.empty-tier-message');
+          
+          if (visiblePlayers.length === 0) {
+            if (!existingEmptyMessage) {
+              const emptyMessage = document.createElement('div');
+              emptyMessage.className = 'empty-tier-message';
+              emptyMessage.textContent = 'No players in this region';
+              tierPlayers.appendChild(emptyMessage);
+            } else {
+              existingEmptyMessage.style.display = 'block';
+            }
+          } else if (existingEmptyMessage) {
+            existingEmptyMessage.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
