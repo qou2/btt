@@ -17,8 +17,8 @@ jobs:
 
       - name: Replace environment variables
         run: |
-          # Replace placeholder in your JS file - UPDATE "your-script.js" to your actual filename
-          sed -i 's|PLACEHOLDER_WEBHOOK_URL|${{ secrets.DISCORD_WEBHOOK_URL }}|g' your-script.js
+          # Replace placeholder in your HTML file
+          sed -i 's|PLACEHOLDER_WEBHOOK_URL|${{ secrets.DISCORD_WEBHOOK_URL }}|g' cheaterlist.html
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
