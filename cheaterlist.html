@@ -786,8 +786,8 @@
       });
       
       // Form submission handling with Discord webhook
-      const webhookURL = 'https://discord.com/api/webhooks/1369120116586971337/oUi2Jh3pbSvepE4sgpS6pPJ6Sv2SychzuJ9cJUUuad2eTf24Fyw1fKRwNxJSTgVtS9r4';
-      const statusMessage = document.getElementById('statusMessage');
+const webhookURL = process.env.DISCORD_WEBHOOK_URL || import.meta.env.VITE_DISCORD_WEBHOOK_URL;
+const statusMessage = document.getElementById('statusMessage');
       
       document.getElementById('cheaterForm').addEventListener('submit', function(e) {
         e.preventDefault();
