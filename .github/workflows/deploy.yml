@@ -9,16 +9,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
+        
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-
+          
       - name: Replace environment variables
         run: |
-          # Replace placeholder in all HTML and JS files
-          find . -name "*.html" -o -name "*.js" | xargs sed -i 's|PLACEHOLDER_WEBHOOK_URL|${{ secrets.DISCORD_WEBHOOK_URL }}|g'
+          # Replace placeholder in all HTML and JS files (handles filenames with spaces)
+          find . -name "*.html" -o -name "*.js" | while IFS= read -r file; do
+            sed -i 's|PLACEHOLDER_WEBHOOK_URL|${{ secrets.DISCORD_WEBHOOK_URL }}|g' "$file"
+          done
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
