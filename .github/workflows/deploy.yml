@@ -15,12 +15,33 @@ jobs:
         with:
           node-version: '18'
           
+      - name: Create config file
+        run: |
+          echo "window.CONFIG = { DISCORD_WEBHOOK_URL: '${{ secrets.DISCORD_WEBHOOK_URL }}' };" > config.js
+          
       - name: Replace environment variables
         run: |
-          # Replace placeholder in all HTML and JS files (handles filenames with spaces)
+          # Debug: Show current directory and files
+          echo "Current directory: $(pwd)"
+          echo "Files found:"
+          find . -name "*.html" -o -name "*.js"
+          
+          
           find . -name "*.html" -o -name "*.js" | while IFS= read -r file; do
-            sed -i 's|PLACEHOLDER_WEBHOOK_URL|${{ secrets.DISCORD_WEBHOOK_URL }}|g' "$file"
+            echo "Processing file: $file"
+            # Check if file contains the placeholder
+            if grep -q "PLACEHOLDER_WEBHOOK_URL" "$file"; then
+              echo "Found placeholder in $file"
+              sed -i 's|PLACEHOLDER_WEBHOOK_URL|${{ secrets.DISCORD_WEBHOOK_URL }}|g' "$file"
+              echo "Replaced placeholder in $file"
+            else
+              echo "No placeholder found in $file"
+            fi
           done
+          
+          
+          echo "Files still containing placeholder:"
+          find . -name "*.html" -o -name "*.js" -exec grep -l "PLACEHOLDER_WEBHOOK_URL" {} \; || echo "No files contain placeholder (good!)"
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
