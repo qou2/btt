@@ -1,0 +1,1 @@
+window.CONFIG = { DISCORD_WEBHOOK_URL: '' };
