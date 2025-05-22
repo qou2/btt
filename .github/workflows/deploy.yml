@@ -15,33 +15,47 @@ jobs:
         with:
           node-version: '18'
           
-      - name: Create config file
+      - name: Debug and Replace environment variables
         run: |
-          echo "window.CONFIG = { DISCORD_WEBHOOK_URL: '${{ secrets.DISCORD_WEBHOOK_URL }}' };" > config.js
-          
-      - name: Replace environment variables
-        run: |
-          # Debug: Show current directory and files
+          echo "=== DEBUGGING PLACEHOLDER REPLACEMENT ==="
           echo "Current directory: $(pwd)"
-          echo "Files found:"
-          find . -name "*.html" -o -name "*.js"
+          echo "All files in directory:"
+          ls -la
           
+          echo "=== Searching for files with PLACEHOLDER_WEBHOOK_URL ==="
+          grep -r "PLACEHOLDER_WEBHOOK_URL" . || echo "No files found with placeholder"
           
-          find . -name "*.html" -o -name "*.js" | while IFS= read -r file; do
-            echo "Processing file: $file"
-            # Check if file contains the placeholder
-            if grep -q "PLACEHOLDER_WEBHOOK_URL" "$file"; then
-              echo "Found placeholder in $file"
-              sed -i 's|PLACEHOLDER_WEBHOOK_URL|${{ secrets.DISCORD_WEBHOOK_URL }}|g' "$file"
-              echo "Replaced placeholder in $file"
-            else
-              echo "No placeholder found in $file"
+          echo "=== Processing files ==="
+          # Find and replace in HTML and JS files
+          for file in $(find . -name "*.html" -o -name "*.js"); do
+            echo "Checking file: $file"
+            if [ -f "$file" ]; then
+              echo "File exists: $file"
+              if grep -q "PLACEHOLDER_WEBHOOK_URL" "$file"; then
+                echo "Found placeholder in: $file"
+                echo "Before replacement:"
+                grep "PLACEHOLDER_WEBHOOK_URL" "$file"
+                
+                # Perform replacement
+                sed -i "s|PLACEHOLDER_WEBHOOK_URL|${{ secrets.DISCORD_WEBHOOK_URL }}|g" "$file"
+                
+                echo "After replacement:"
+                grep -A1 -B1 "secrets.DISCORD_WEBHOOK_URL\|${{ secrets.DISCORD_WEBHOOK_URL }}" "$file" || echo "Replacement successful"
+              else
+                echo "No placeholder found in: $file"
+              fi
             fi
           done
           
+          echo "=== Final check for remaining placeholders ==="
+          grep -r "PLACEHOLDER_WEBHOOK_URL" . || echo "All placeholders replaced successfully!"
           
-          echo "Files still containing placeholder:"
-          find . -name "*.html" -o -name "*.js" -exec grep -l "PLACEHOLDER_WEBHOOK_URL" {} \; || echo "No files contain placeholder (good!)"
+      - name: Verify webhook URL
+        run: |
+          echo "Webhook URL length: ${#DISCORD_WEBHOOK_URL}"
+          echo "Webhook URL starts with: ${DISCORD_WEBHOOK_URL:0:30}..."
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
