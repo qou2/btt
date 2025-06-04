@@ -74,11 +74,18 @@
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(110, 91, 223, 0.2);
     }
-    .header-content {
-      display: flex;
-      align-items: center;
-      flex: 1;
-    }
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  width: 100%;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
     .header-center {
       position: absolute;
       left: 50%;
@@ -105,11 +112,12 @@
       -webkit-text-fill-color: transparent;
       text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    .header-buttons {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-    }
+.header-buttons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-shrink: 0;
+}
     .discord-button {
       background: linear-gradient(135deg, #806AD6 , #5464CA);
       padding: 10px 18px;
@@ -600,10 +608,21 @@
         margin: 0 5px;
       }
     }
-  .theme-toggle {
-    margin-right: auto;
-    padding-left: 20px;
-  }
+.header-content {
+  gap: 10px;
+}
+
+.player-search {
+  flex: 1;
+}
+
+#player-search-input {
+  width: 100%;
+}
+
+.theme-toggle {
+  flex-shrink: 0;
+}
   
   .theme-toggle-btn {
     background: linear-gradient(135deg, var(--accent-color), #4752C4);
@@ -656,30 +675,214 @@
 .cheater-btn:hover {
   box-shadow: 0 6px 20px rgba(255, 79, 79, 0.6);
 }
+.player-search {
+  position: relative;
+  flex-shrink: 0;
+}
 
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#player-search-input {
+  background: rgba(30, 36, 46, 0.8);
+  border: 2px solid rgba(110, 91, 223, 0.3);
+  border-radius: 25px;
+  padding: 10px 40px 10px 15px;
+  color: var(--text-color);
+  font-size: 14px;
+  width: 200px;
+  transition: all 0.3s;
+  backdrop-filter: blur(10px);
+}
+
+#player-search-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 15px rgba(110, 91, 223, 0.4);
+  width: 220px;
+}
+
+#player-search-input::placeholder {
+  color: rgba(230, 237, 243, 0.6);
+}
+
+.search-icon {
+  position: absolute;
+  right: 15px;
+  color: var(--accent-color);
+  pointer-events: none;
+}
+
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  margin-top: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.suggestion-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.suggestion-item:hover {
+  background: rgba(110, 91, 223, 0.2);
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.player-result-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  z-index: 10000;
+  backdrop-filter: blur(5px);
+}
+
+.popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--card-bg);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(110, 91, 223, 0.3);
+  padding-bottom: 15px;
+}
+
+.popup-close {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.popup-close:hover {
+  color: var(--accent-color);
+  transform: rotate(90deg);
+}
+
+.player-tier-result {
+  margin-bottom: 15px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  border-left: 4px solid var(--accent-color);
+}
+
+.gamemode-name {
+  font-weight: bold;
+  color: var(--accent-color);
+  margin-bottom: 5px;
+}
+
+.tier-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tier-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff; 
+}
+
+.tier-s\+ { background: #000406; color: #fff; }
+.tier-s { background: #11806a; color: #fff; }
+.tier-a { background: #1f8b4c; color: #fff; }
+.tier-b { background: #206694; color: #fff; }
+.tier-c { background: #71368c; color: #fff; }
+.tier-d { background: #ad1457; color: #fff; }
+.tier-e { background: #992d22; color: #fff; }
+
+@media (max-width: 768px) {
+  .player-search {
+    order: -1;
+    margin: 10px 0;
+    width: 100%;
+  }
+  
+  #player-search-input {
+    width: 100%;
+  }
+  
+  #player-search-input:focus {
+    width: 100%;
+  }
+}
   </style>
 </head>
 <body>
 
-    <header>
-    <div class="header-content">
-      <div class="theme-toggle">
-        <button id="theme-toggle-btn" class="theme-toggle-btn">
-          <i class="fas fa-moon"></i>
-        </button>
+<header>
+<div class="header-content">
+  <div class="header-left">
+    <div class="theme-toggle">
+      <button id="theme-toggle-btn" class="theme-toggle-btn">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+    <div class="player-search">
+      <div class="search-container">
+        <input type="text" id="player-search-input" placeholder="Search player..." autocomplete="off">
+        <i class="fas fa-search search-icon"></i>
+        <div id="search-suggestions" class="search-suggestions"></div>
       </div>
-      <div class="header-center">
-        <a href="index.html">
-          <img src="bttt.png" alt="Bedrock Tier Testing Logo">
-        </a>
-      </div>    
     </div>
-    <div class="header-buttons">
-      <a class="discord-button" href="https://discord.gg/yuMzU7485w" target="_blank">
-        <i class="fab fa-discord"></i> Join Discord
-      </a>
-    </div>
-  </header>
+  </div>
+  <div class="header-center">
+    <a href="index.html">
+      <img src="bttt.png" alt="Bedrock Tier Testing Logo">
+    </a>
+  </div>    
+  <div class="header-buttons">
+    <a class="discord-button" href="https://discord.gg/yuMzU7485w" target="_blank">
+      <i class="fab fa-discord"></i> Join Discord
+    </a>
+  </div>
+</div>
+</header>
 
   <div class="game-mode-nav">
     <a href="skywars.html">
@@ -840,6 +1043,193 @@
         }, 300);
       });
     });
+// Player search functionality
+const gameModes = ['skywars', 'midfight', 'bridge', 'sumo', 'nodebuff', 'builduhc', 'bedfight'];
+let allPlayers = [];
+let playerData = {};
+
+// Load all player data from gamemode files
+async function loadPlayerData() {
+  for (const gameMode of gameModes) {
+    try {
+      const response = await fetch(`${gameMode}.html`);
+      const html = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      
+      const players = {};
+      const tierColumns = doc.querySelectorAll('.tier-column');
+      
+      tierColumns.forEach(column => {
+        const tierLabel = column.querySelector('.tier-label');
+        if (!tierLabel) return;
+        
+        const tier = tierLabel.textContent.trim().toUpperCase();
+        const playerCards = column.querySelectorAll('.player-card');
+        
+        playerCards.forEach(card => {
+          const nameElement = card.querySelector('.player-name');
+          if (!nameElement) return;
+          
+          let playerName = nameElement.childNodes[0].textContent.trim();
+          const regionElement = card.querySelector('.region-badge');
+          const region = regionElement ? regionElement.textContent.trim() : 'Unknown';
+          
+          // Check for badges
+          const badges = [];
+          if (nameElement.querySelector('.tester-badge')) badges.push('Tester');
+          if (nameElement.querySelector('.number-one-badge')) badges.push('#1');
+          
+          players[playerName.toLowerCase()] = {
+            name: playerName,
+            tier: tier,
+            region: region,
+            badges: badges
+          };
+          
+          // Add to global players list for autocomplete
+          if (!allPlayers.find(p => p.toLowerCase() === playerName.toLowerCase())) {
+            allPlayers.push(playerName);
+          }
+        });
+      });
+      
+      playerData[gameMode] = players;
+    } catch (error) {
+      console.error(`Error loading ${gameMode} data:`, error);
+    }
+  }
+}
+
+// Initialize player data on page load
+loadPlayerData();
+
+// Search input functionality
+const searchInput = document.getElementById('player-search-input');
+const suggestionsDiv = document.getElementById('search-suggestions');
+
+searchInput.addEventListener('input', function() {
+  const query = this.value.toLowerCase().trim();
+  
+  if (query.length === 0) {
+    suggestionsDiv.style.display = 'none';
+    return;
+  }
+  
+  // Sort suggestions: names starting with query first, then names containing query
+  const suggestions = allPlayers
+    .filter(player => player.toLowerCase().includes(query))
+    .sort((a, b) => {
+      const aLower = a.toLowerCase();
+      const bLower = b.toLowerCase();
+      const aStartsWith = aLower.startsWith(query);
+      const bStartsWith = bLower.startsWith(query);
+      
+      // If one starts with query and other doesn't, prioritize the one that starts with it
+      if (aStartsWith && !bStartsWith) return -1;
+      if (!aStartsWith && bStartsWith) return 1;
+      
+      // If both start with query or both don't, sort alphabetically
+      return aLower.localeCompare(bLower);
+    })
+    .slice(0, 5);
+  
+  if (suggestions.length > 0) {
+    suggestionsDiv.innerHTML = suggestions.map(player => 
+      `<div class="suggestion-item" onclick="selectPlayer('${player}')">${player}</div>`
+    ).join('');
+    suggestionsDiv.style.display = 'block';
+  } else {
+    suggestionsDiv.style.display = 'none';
+  }
+});
+
+searchInput.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    searchPlayer(this.value.trim());
+    suggestionsDiv.style.display = 'none';
+  }
+});
+
+// Hide suggestions when clicking outside
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.search-container')) {
+    suggestionsDiv.style.display = 'none';
+  }
+});
+
+function selectPlayer(playerName) {
+  searchInput.value = playerName;
+  suggestionsDiv.style.display = 'none';
+  searchPlayer(playerName);
+}
+
+function searchPlayer(playerName) {
+  if (!playerName) return;
+  
+  const results = [];
+  const searchName = playerName.toLowerCase();
+  
+  gameModes.forEach(gameMode => {
+    if (playerData[gameMode] && playerData[gameMode][searchName]) {
+      const player = playerData[gameMode][searchName];
+      results.push({
+        gameMode: gameMode.charAt(0).toUpperCase() + gameMode.slice(1),
+        ...player
+      });
+    }
+  });
+  
+  showPlayerResults(playerName, results);
+}
+
+function showPlayerResults(playerName, results) {
+  const popup = document.getElementById('player-result-popup');
+  const popupPlayerName = document.getElementById('popup-player-name');
+  const popupResults = document.getElementById('popup-results');
+  
+  popupPlayerName.textContent = `Results for: ${playerName}`;
+  
+  if (results.length === 0) {
+    popupResults.innerHTML = '<p style="text-align: center; color: var(--text-color); opacity: 0.7;">No results found for this player.</p>';
+  } else {
+popupResults.innerHTML = results.map(result => `
+  <div class="player-tier-result">
+    <div class="gamemode-name">${result.gameMode}</div>
+    <div class="tier-info">
+      <span class="tier-badge tier-${result.tier.toLowerCase()}">${result.tier} Tier</span>
+    </div>
+  </div>
+`).join('');
+  }
+  
+  popup.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closePlayerPopup() {
+  const popup = document.getElementById('player-result-popup');
+  popup.style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// Close popup when clicking outside
+document.getElementById('player-result-popup').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closePlayerPopup();
+  }
+});
   </script>
+<div id="player-result-popup" class="player-result-popup">
+  <div class="popup-content">
+    <div class="popup-header">
+      <h3 id="popup-player-name">Player Results</h3>
+      <button class="popup-close" onclick="closePlayerPopup()">&times;</button>
+    </div>
+    <div id="popup-results">
+    </div>
+  </div>
+</div>
 </body>
 </html>
